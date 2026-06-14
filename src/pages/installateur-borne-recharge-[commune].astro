@@ -1,0 +1,443 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import StepsForm from '../components/StepsForm.astro';
+import CityMap from '../components/CityMap.astro';
+import communes from '../data/communes.json';
+import { generateCommuneContent, getDynamicPrices, getClimateZone } from '../lib/contentEngine';
+import { getSmartNearbyCommunes } from '../lib/geoLinks';
+import config from '../data/config.json';
+
+export async function getStaticPaths() {
+  return communes.map((commune) => ({
+    params: { commune: commune.slug },
+    props: { commune }
+  }));
+}
+
+const { commune } = Astro.props;
+
+// Generate spun localized content
+const content = generateCommuneContent(commune, 'main');
+const prices = getDynamicPrices(commune);
+const climateZone = getClimateZone(commune.codePostal, commune.slug);
+const nearbyCommunes = getSmartNearbyCommunes(commune.slug, communes, 6, 2);
+
+const title = `Borne de Recharge à ${commune.nom} (${commune.codePostal}) — Installateur IRVE Bouches-du-Rhône`;
+const description = `Besoin d'installer une borne de recharge à ${commune.nom} ? Électriciens qualifiés IRVE. Devis gratuit sous 48h. Comparez les tarifs 2026 et obtenez vos aides.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Villes (13)", href: "/communes/" },
+  { label: commune.nom }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup 
+    slot="head"
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    faqItems={content.faqItems}
+    breadcrumbItems={breadcrumbItems}
+    communeName={commune.nom}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <!-- Localized Hero Section -->
+  <section class="city-hero" style="background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%); color: white; padding: 60px 0 80px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-color);">
+    <div class="tech-pattern"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="hero-columns" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;">
+        
+        <!-- Left Text Column -->
+        <div class="hero-left">
+          <div class="zfe-badge-pill" style="display: inline-flex; align-items: center; background: var(--accent); color: white; padding: 6px 14px; border-radius: 9999px; font-size: 13px; font-weight: 800; font-family: var(--font-body); margin-bottom: 25px; text-transform: uppercase;">
+            {['marseille', 'aix-en-provence', 'aubagne', 'vitrolles', 'martigues', 'la-ciotat'].includes(commune.slug) ? "🚨 ZFE Métropole Marseille 2026" : "🔌 Installateur IRVE Certifié 13"}
+          </div>
+          
+          <h1 style="font-family: var(--font-heading); font-size: 38px; font-weight: 800; line-height: 1.25; margin-bottom: 20px; color: white;">
+            Installateur Borne de Recharge à {commune.nom} ({commune.codePostal})
+          </h1>
+          
+          <p style="font-size: 17.5px; line-height: 1.6; color: var(--primary-light); margin-bottom: 25px;">
+            {content.introParagraph}
+          </p>
+
+          <div class="key-features-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14.5px;">
+              <span style="color: var(--accent); font-size: 18px;">✓</span> Poseurs Certifiés IRVE 13
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14.5px;">
+              <span style="color: var(--accent); font-size: 18px;">✓</span> Crédit d'impôt 500 € déduit
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14.5px;">
+              <span style="color: var(--accent); font-size: 18px;">✓</span> TVA à 5,5% éligible
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14.5px;">
+              <span style="color: var(--accent); font-size: 18px;">✓</span> Dossier ADVENIR géré
+            </div>
+          </div>
+
+          <div class="local-fact-card" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); padding: 20px; border-radius: var(--radius-md); backdrop-filter: blur(10px);">
+            <h4 style="margin: 0 0 8px; font-size: 14px; font-family: var(--font-heading); text-transform: uppercase; color: var(--accent);">Données clés : {commune.nom}</h4>
+            <p style="margin: 0; font-size: 13.5px; color: var(--primary-light); line-height: 1.5;">
+              {commune.nom} compte environ {commune.population?.toLocaleString('fr-FR')} habitants, avec {commune.logements?.toLocaleString('fr-FR')} résidences et une proportion de {commune.logementsMaison}% de maisons individuelles. On y estime plus de {commune.vehiculesElectriques} véhicules électriques en circulation en 2026.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Form Column -->
+        <div class="hero-right">
+          <div id="devis-form-container" style="background: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); overflow: hidden;">
+            <div style="background: var(--primary); padding: 20px 30px; text-align: center; border-bottom: 2px solid var(--border-color);">
+              <h3 style="margin: 0; color: white; font-family: var(--font-heading); font-size: 18px; font-weight: 700;">Estimez vos subventions à {commune.nom}</h3>
+              <p style="margin: 5px 0 0; color: var(--primary-light); font-size: 12.5px;">Comparez 3 devis d'électriciens locaux</p>
+            </div>
+            <div style="padding: 25px 30px;">
+              <StepsForm initialZip={commune.codePostal} />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Localized Detail Content Section -->
+  <section class="city-details" style="padding: 60px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div class="two-column-layout" style="display: grid; grid-template-columns: 2.5fr 1fr; gap: 40px; align-items: start;">
+        
+        <!-- Main spun content card -->
+        <div class="city-main-content rich-text" style="background: var(--card-bg); padding: 45px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          
+          <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 700; color: var(--primary); margin-top: 0; margin-bottom: 20px;">
+            Pourquoi installer sa borne à domicile à {commune.nom} ?
+          </h2>
+          <p>
+            {content.localContext}
+          </p>
+          
+          <blockquote>
+            {content.logisticsAlert}
+          </blockquote>
+
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 35px; margin-bottom: 15px;">
+            Barème des prix de pose constatés à {commune.nom}
+          </h2>
+          <p>{content.tableIntro}</p>
+
+          <table class="data-table" style="width: 100%; border-collapse: collapse; margin: 25px 0;">
+            <thead>
+              <tr style="background-color: var(--primary-light); color: var(--primary);">
+                <th style="padding: 12px; border: 1px solid var(--border-color); text-align: left;">Solution de charge</th>
+                <th style="padding: 12px; border: 1px solid var(--border-color); text-align: left;">Puissance / Utilisation</th>
+                <th style="padding: 12px; border: 1px solid var(--border-color); text-align: right;">Prix posé TTC moyen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Prise renforcée Green'Up</strong></td>
+                <td style="padding: 12px; border: 1px solid var(--border-color);">3.7 kW / Recharge lente nocturne</td>
+                <td style="padding: 12px; border: 1px solid var(--border-color); text-align: right; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">{prices.greenUp.min} € – {prices.greenUp.max} €</td>
+              </tr>
+              <tr style="background-color: #fafaf9;">
+                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Wallbox Monophasée</strong></td>
+                <td style="padding: 12px; border: 1px solid var(--border-color);">7.4 kW / Standard maison (6-8h)</td>
+                <td style="padding: 12px; border: 1px solid var(--border-color); text-align: right; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">{prices.wallbox7kW.min} € – {prices.wallbox7kW.max} €</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Wallbox Triphasée 11kW</strong></td>
+                <td style="padding: 12px; border: 1px solid var(--border-color);">11 kW / Semi-rapide (4-5h)</td>
+                <td style="padding: 12px; border: 1px solid var(--border-color); text-align: right; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">{prices.wallbox11kW.min} € – {prices.wallbox11kW.max} €</td>
+              </tr>
+              <tr style="background-color: #fafaf9;">
+                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Wallbox Triphasée 22kW</strong></td>
+                <td style="padding: 12px; border: 1px solid var(--border-color);">22 kW / Rapide (2h)</td>
+                <td style="padding: 12px; border: 1px solid var(--border-color); text-align: right; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">{prices.wallbox22kW.min} € – {prices.wallbox22kW.max} €</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Infrastructure Copropriété</strong></td>
+                <td style="padding: 12px; border: 1px solid var(--border-color);">Par place / Raccordement collectif</td>
+                <td style="padding: 12px; border: 1px solid var(--border-color); text-align: right; font-family: var(--font-mono); font-weight: 700; color: var(--accent);">{prices.copro.min} € – {prices.copro.max} €</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.45;">{content.pricesContext}</p>
+
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 35px; margin-bottom: 15px;">
+            Optimisation et Économies de recharge à {commune.nom}
+          </h2>
+          <p>
+            {content.useCaseText} {content.ecoText}
+          </p>
+          <p>
+            En branchant votre voiture électrique sur votre borne de recharge privée à {commune.nom}, vous économisez {content.savingsEstimate}
+          </p>
+
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 35px; margin-bottom: 15px;">
+            Conseils techniques et Expertise locale à {commune.nom}
+          </h2>
+          <p>
+            {content.communeDataInsight} {content.realEstateInsight} {content.populationTierContent}
+          </p>
+
+          <div style="background: var(--primary-light); border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; margin-top: 35px; display: flex; gap: 15px; align-items: start;">
+            <span style="font-size: 24px; display: block;">💡</span>
+            <div>
+              <h4 style="margin: 0 0 6px; font-family: var(--font-heading); color: var(--primary); font-size: 16px; font-weight: 700;">Le conseil de l'installateur IRVE provençal</h4>
+              <p style="margin: 0; font-size: 14px; line-height: 1.5; color: var(--text);">{content.expertTip}</p>
+            </div>
+          </div>
+
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 40px; margin-bottom: 15px;">
+            Réseau de recharge et mobilité électrique à {commune.nom}
+          </h2>
+          <p>
+            {content.densiteAnalysis}
+          </p>
+          <p>
+            {content.distanceMarseilleContext}
+          </p>
+
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 35px; margin-bottom: 15px;">
+            Réglementation locale et aides spécifiques
+          </h2>
+          <p>
+            {content.localRegulation}
+          </p>
+          <p>
+            {content.marcheImmobilierInsight}
+          </p>
+
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 30px; padding-top: 15px; border-top: 1px solid var(--border-color); line-height: 1.5; font-style: italic;">
+            {content.sourcesCitation} Dernière mise à jour : {content.lastUpdated}.
+          </p>
+
+          <!-- In-content pillar links (SEO) -->
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 40px; margin-bottom: 15px;">
+            Pour aller plus loin — Guides et Ressources
+          </h2>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+            {content.pillarLinks.map(p => (
+              <a href={p.href} style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--primary-light); border-radius: var(--radius-sm); border: 1px solid var(--border-color); text-decoration: none; transition: transform 0.15s ease;">
+                <span style="font-size: 14px; font-weight: 700; color: var(--primary); font-family: var(--font-heading);">{p.label}</span>
+                <span style="font-size: 12.5px; color: var(--text-muted); margin-left: auto;">{p.desc}</span>
+              </a>
+            ))}
+          </div>
+
+          <!-- Google Maps Iframe -->
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 45px; margin-bottom: 15px;">
+            Secteur d'intervention à {commune.nom} et alentours
+          </h2>
+          <p>
+            Nos artisans qualifiés IRVE interviennent dans l'ensemble des quartiers de {commune.nom} et des localités environnantes pour poser vos infrastructures de recharge.
+          </p>
+          <CityMap cityName={commune.nom} zip={commune.codePostal} />
+
+          <!-- FAQ Accordion -->
+          <h2 style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 45px; margin-bottom: 20px;">
+            Questions fréquentes — Borne de recharge à {commune.nom}
+          </h2>
+          <div class="faq-accordion" style="display: flex; flex-direction: column; gap: 15px;">
+            {content.faqItems.map((faq, idx) => (
+              <details style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 15px 20px;" open={idx === 0}>
+                <summary style="font-family: var(--font-heading); font-weight: 700; color: var(--primary); cursor: pointer; font-size: 15px; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+                  <span>{faq.question}</span>
+                  <span style="color: var(--accent); font-weight: bold;">▾</span>
+                </summary>
+                <p style="margin-top: 12px; margin-bottom: 0; font-size: 14.5px; line-height: 1.5; color: var(--text-muted);">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+
+        </div>
+
+        <!-- Sidebar / Navigation widget -->
+        <aside class="city-sidebar" style="display: flex; flex-direction: column; gap: 30px;">
+          
+          <!-- Local Info Widget -->
+          <div class="sidebar-widget" style="background: var(--card-bg); padding: 25px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <h3 style="font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--primary-light); padding-bottom: 8px;">
+              📍 Fiche Technique {commune.nom}
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; font-size: 13.5px; color: var(--text);">
+              <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--primary-light); padding-bottom: 8px;">
+                <span>Code Postal</span>
+                <strong>{commune.codePostal}</strong>
+              </li>
+              <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--primary-light); padding-bottom: 8px;">
+                <span>Département</span>
+                <strong>Bouches-du-Rhône (13)</strong>
+              </li>
+              <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--primary-light); padding-bottom: 8px;">
+                <span>Zone Climatique</span>
+                <strong style="font-size: 11px; text-transform: uppercase;">{content.climateZoneLabel}</strong>
+              </li>
+              {commune.intercommunalite && (
+                <li style="display: flex; flex-direction: column; border-bottom: 1px solid var(--primary-light); padding-bottom: 8px; gap: 2px;">
+                  <span>Intercommunalité</span>
+                  <strong style="font-size: 12.5px;">{commune.intercommunalite}</strong>
+                </li>
+              )}
+              {commune.canton && (
+                <li style="display: flex; justify-content: space-between;">
+                  <span>Canton</span>
+                  <strong>{commune.canton}</strong>
+                </li>
+              )}
+            </ul>
+          </div>
+
+          <!-- Dynamic links page types (copro & wallbox) -->
+          <div class="sidebar-widget" style="background: var(--card-bg); padding: 25px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <h3 style="font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--primary-light); padding-bottom: 8px;">
+              📁 Guides Spécifiques
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; font-size: 13.5px;">
+              <li>
+                👉 <a href={`/borne-recharge-copropriete-${commune.slug}/`} style="color: var(--secondary); font-weight: 700; text-decoration: none;">Pose en Copropriété à {commune.nom}</a>
+              </li>
+              <li>
+                👉 <a href={`/wallbox-${commune.slug}/`} style="color: var(--secondary); font-weight: 700; text-decoration: none;">Choisir une Wallbox à {commune.nom}</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Internal links recommendations (guides) -->
+          <div class="sidebar-widget" style="background: var(--card-bg); padding: 25px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <h3 style="font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--primary-light); padding-bottom: 8px;">
+              📚 Guides Recommandés
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+              {content.guideLinks.map(g => (
+                <div style="font-size: 13px;">
+                  <a href={g.href} style="color: var(--secondary); font-weight: 700; text-decoration: none; display: block; margin-bottom: 3px;">{g.label}</a>
+                  <span style="color: var(--text-muted); line-height: 1.4; display: block;">{g.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Official Links -->
+          <div class="sidebar-widget" style="background: var(--card-bg); padding: 25px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <h3 style="font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--primary-light); padding-bottom: 8px;">
+              🔗 Ressources Officielles
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px; font-size: 12.5px;">
+              {content.externalLinks.map(link => (
+                <li>
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" style="color: var(--secondary); font-weight: 700; text-decoration: none; display: block; margin-bottom: 3px;">
+                    {link.label} &rarr;
+                  </a>
+                  <span style="color: var(--text-muted); line-height: 1.35; display: block;">{link.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Localized Proximity Links (SEO Link Juice Grid) -->
+          <div class="sidebar-widget" style="background: var(--card-bg); padding: 25px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+            <h3 style="font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; border-bottom: 2px solid var(--primary-light); padding-bottom: 8px;">
+              📍 Communes Limitrophes
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+              {nearbyCommunes.map((c) => (
+                <li>
+                  <a href={`/installateur-borne-recharge-${c.slug}/`} style="color: var(--text); text-decoration: none; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f3f4f6; padding-bottom: 6px;">
+                    <span>{c.nom} <span style="font-size: 11px; color: var(--text-muted);">({c.codePostal})</span></span>
+                    <span style="color: var(--accent); font-weight: bold;">&rarr;</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .tech-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(244, 63, 94, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+    z-index: 1;
+  }
+  
+  @media (max-width: 992px) {
+    .hero-columns {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+    .two-column-layout {
+      grid-template-columns: 1fr !important;
+      gap: 35px !important;
+    }
+  }
+
+  /* Rich text styles */
+  .rich-text :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 35px;
+    margin-bottom: 15px;
+    border-bottom: 1.5px solid var(--border-color);
+    padding-bottom: 8px;
+  }
+  .rich-text :global(p) {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .rich-text :global(blockquote) {
+    border-left: 4px solid var(--accent);
+    background: var(--primary-light);
+    padding: 15px 25px;
+    margin: 25px 0;
+    border-radius: var(--radius-sm);
+    color: var(--primary);
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  
+  /* Details summary dropdown styles */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  details summary:hover {
+    color: var(--secondary) !important;
+  }
+  
+  @media (max-width: 768px) {
+    .key-features-list {
+      grid-template-columns: 1fr !important;
+      gap: 10px !important;
+    }
+    .city-hero h1 {
+      font-size: 26px !important;
+    }
+    .city-hero {
+      padding: 40px 0 50px !important;
+    }
+  }
+</style>

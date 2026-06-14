@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+import communes from '../data/communes.json';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = `Trouver un électricien IRVE par Ville dans les Bouches-du-Rhône (13) | ${config.brandName}`;
+const description = `Accédez aux pages d'installation de borne de recharge de ${communes.length} communes des Bouches-du-Rhône. Simulez vos subventions et comparez 3 devis d'électriciens qualifiés IRVE.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Villes des Bouches-du-Rhône (13)" }
+];
+---
+
+<style>
+  .cities-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .city-card-enhanced {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    transition: var(--transition);
+  }
+  .city-card-enhanced:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+  }
+  .city-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .city-card-header a {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .city-card-header a:hover {
+    color: var(--secondary);
+  }
+  .city-card-pop {
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--primary-light);
+    padding: 2px 8px;
+    border-radius: 50px;
+    font-family: var(--font-data);
+  }
+  .city-card-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .city-card-links a {
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  .city-card-links a:hover {
+    background: var(--accent);
+    color: var(--primary);
+    border-color: var(--accent);
+  }
+  @media (max-width: 640px) {
+    .cities-grid-full {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<Layout title={title} description={description}>
+  <SchemaMarkup
+    slot="head"
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 45px;">
+        <h1 style="font-family: var(--font-heading); font-size: 34px; font-weight: 700; color: var(--primary); line-height: 1.25; margin-bottom: 12px;">
+          Installateurs de Bornes de Recharge dans les Bouches-du-Rhône (13)
+        </h1>
+        <p style="font-size: 16px; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.55;">
+          Sélectionnez votre commune parmi les {communes.length} villes du département pour estimer vos subventions (TVA 5,5%, Crédit d'impôt 500 €, ADVENIR) et comparer les devis de poseurs qualifiés IRVE.
+        </p>
+        <p style="font-size: 14px; color: var(--text-muted); margin-top: 10px;">
+          Pour chaque commune, accédez à nos 3 pages spécialisées : <strong>Installation principale</strong>, <strong>Copropriété</strong> et <strong>Wallbox</strong>.
+        </p>
+      </div>
+
+      <div class="cities-grid-full">
+        {communes.map((c) => (
+          <div class="city-card-enhanced">
+            <div class="city-card-header">
+              <a href={`/installateur-borne-recharge-${c.slug}/`}>
+                {c.nom} <span style="font-size: 11px; font-weight: normal; color: var(--text-muted);">({c.codePostal})</span>
+              </a>
+              <span class="city-card-pop">{c.population?.toLocaleString('fr-FR')} hab</span>
+            </div>
+            <div class="city-card-links">
+              <a href={`/installateur-borne-recharge-${c.slug}/`}>🔌 Installateur IRVE</a>
+              <a href={`/borne-recharge-copropriete-${c.slug}/`}>🏢 Copropriété</a>
+              <a href={`/wallbox-${c.slug}/`}>⚡ Wallbox</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

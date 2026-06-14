@@ -1,0 +1,429 @@
+---
+import config from '../data/config.json';
+---
+
+<div class="form-card" id="devis">
+  <h2>Estimez vos aides &amp; recevez vos devis</h2>
+  <p class="subtitle">Artisans qualifiés IRVE des Bouches-du-Rhône - Tarifs et aides de l'État 2026</p>
+
+  <form id="borne-lead-form">
+    <!-- Step 1: Type de travaux -->
+    <div class="step-container" id="step-1">
+      <div class="form-group">
+        <label>1. Quel est votre projet d'installation de recharge ?</label>
+        <div class="options-grid">
+          <div class="option-box active" data-value="281" data-step="1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span>Borne de Recharge (Wallbox)</span>
+            <span class="desc-text">Recharge rapide 7.4 kW, 11 kW ou 22 kW</span>
+          </div>
+          <div class="option-box" data-value="282" data-step="1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364.364l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            <span>Prise renforcée (type Green'Up)</span>
+            <span class="desc-text">Recharge lente sécurisée 3.7 kW</span>
+          </div>
+        </div>
+        <input type="hidden" name="cat_id" id="cat_id" value="281" />
+      </div>
+      <div class="form-nav">
+        <button type="button" class="btn-primary next-btn" data-next="2" style="width: 100%;">Continuer &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Habitation & Statut -->
+    <div class="step-container" id="step-2" style="display: none;">
+      <div class="form-group">
+        <label>2. Quel est le type de logement ?</label>
+        <div class="options-grid-row">
+          <div class="option-box-small active" data-value="1" data-field="type_bien" data-step="2">
+            <span>🏡 Maison</span>
+          </div>
+          <div class="option-box-small" data-value="2" data-field="type_bien" data-step="2">
+            <span>🏢 Appartement / Copro</span>
+          </div>
+        </div>
+        <input type="hidden" name="type_bien" id="type_bien" value="1" />
+      </div>
+
+      <div class="form-group" style="margin-top: 25px;">
+        <label>Quel est votre statut d'occupation ?</label>
+        <div class="options-grid-row">
+          <div class="option-box-small active" data-value="1" data-field="situation" data-step="2b">
+            <span>Propriétaire</span>
+          </div>
+          <div class="option-box-small" data-value="2" data-field="situation" data-step="2b">
+            <span>Locataire</span>
+          </div>
+        </div>
+        <input type="hidden" name="situation" id="situation" value="1" />
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn-secondary prev-btn" data-prev="1">&larr; Retour</button>
+        <button type="button" class="btn-primary next-btn" data-next="3">Continuer &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Compteur & Emplacement -->
+    <div class="step-container" id="step-3" style="display: none;">
+      <div class="form-group">
+        <label>3. Quel est le type d'alimentation de votre compteur ?</label>
+        <div class="options-grid">
+          <div class="option-box active" data-value="Monophase" data-step="3">
+            <span>⚡ Monophasé (le plus courant)</span>
+            <span class="desc-text">230V — pour recharges jusqu'à 7.4 kW</span>
+          </div>
+          <div class="option-box" data-value="Triphase" data-step="3">
+            <span>⚡⚡⚡ Triphasé</span>
+            <span class="desc-text">400V — requis pour charges 11 kW and 22 kW</span>
+          </div>
+          <div class="option-box" data-value="Inconnu" data-step="3">
+            <span>❓ Je ne sais pas</span>
+            <span class="desc-text">Notre électricien IRVE vérifiera sur place</span>
+          </div>
+        </div>
+        <input type="hidden" name="chauffage_actuel" id="chauffage_actuel" value="Monophase" />
+      </div>
+
+      <div class="form-group" style="margin-top: 25px;">
+        <label>Où sera installée la borne ?</label>
+        <div class="options-grid-row">
+          <div class="option-box-small active" data-value="Garage" data-field="parking_position" data-step="3b">
+            <span>🚪 Garage / Box</span>
+          </div>
+          <div class="option-box-small" data-value="Exterieur" data-field="parking_position" data-step="3b">
+            <span>🌳 Extérieur / Allée</span>
+          </div>
+        </div>
+        <input type="hidden" name="parking_position" id="parking_position" value="Garage" />
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn-secondary prev-btn" data-prev="2">&larr; Retour</button>
+        <button type="button" class="btn-primary next-btn" data-next="4">Continuer &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Localisation & Délai -->
+    <div class="step-container" id="step-4" style="display: none;">
+      <div class="form-group">
+        <label for="postal_code">4. Code postal du chantier (Bouches-du-Rhône uniquement)</label>
+        <input type="text" id="postal_code" name="postal_code" placeholder="Ex: 13008" class="form-control" required pattern="^13[0-9]{3}$" maxlength="5" />
+        <span class="input-tip">Doit commencer par 13 (ex : 13008 Marseille, 13100 Aix-en-Provence, 13400 Aubagne, 13500 Martigues, 13600 La Ciotat)</span>
+      </div>
+
+      <!-- Auto resolved city display -->
+      <div class="form-group" id="ville-group" style="display: none;">
+        <label for="ville_chantier">Ville</label>
+        <input type="text" id="ville_chantier" name="ville_chantier" class="form-control" placeholder="Sélectionnez votre ville" required />
+      </div>
+
+      <div class="form-group" style="margin-top: 25px;">
+        <label>Délai souhaité pour votre installation</label>
+        <div class="options-grid-row">
+          <div class="option-box-small active" data-value="1" data-field="delais" data-step="4b">
+            <span>⚡ Immédiat</span>
+          </div>
+          <div class="option-box-small" data-value="2" data-field="delais" data-step="4b">
+            <span>📅 - de 3 mois</span>
+          </div>
+          <div class="option-box-small" data-value="4" data-field="delais" data-step="4b">
+            <span>⏳ + de 3 mois</span>
+          </div>
+        </div>
+        <input type="hidden" name="delais" id="delais" value="1" />
+      </div>
+
+      <div class="form-nav">
+        <button type="button" class="btn-secondary prev-btn" data-prev="3">&larr; Retour</button>
+        <button type="button" class="btn-primary next-btn" data-next="5">Continuer &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Coordonnées de contact -->
+    <div class="step-container" id="step-5" style="display: none;">
+      <div class="form-group-row">
+        <div class="form-group">
+          <label for="prenom">Votre Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Jean" class="form-control" required minlength="2" />
+        </div>
+        <div class="form-group">
+          <label for="nom">Votre Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Dupont" class="form-control" required minlength="2" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone portable (validation SMS requise)</label>
+        <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78" class="form-control" required pattern="^(06|07)[0-9]{8}$" maxlength="10" />
+        <span class="input-tip">Un code de validation SMS vous sera envoyé pour confirmer la demande.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse email</label>
+        <input type="email" id="email" name="email" placeholder="jean.dupont@gmail.com" class="form-control" required />
+      </div>
+
+      <div class="form-group">
+        <label for="adresse">Adresse complète (Numéro, rue)</label>
+        <input type="text" id="adresse" name="adresse" placeholder="12 boulevard Michelet" class="form-control" required minlength="5" />
+      </div>
+
+      <!-- Errors alert wrapper -->
+      <div id="form-errors" class="alert-danger" style="display: none; margin-top: 15px;"></div>
+
+      <div class="form-nav">
+        <button type="button" class="btn-secondary prev-btn" data-prev="4">&larr; Retour</button>
+        <button type="submit" class="btn-primary submit-btn">🔥 Calculer mes aides &rarr;</button>
+      </div>
+    </div>
+  </form>
+
+  <div id="form-submitting" style="display: none; text-align: center; padding: 40px 0;">
+    <div class="spinner-loader"></div>
+    <h3 style="font-size: 20px; font-weight: 700; color: var(--primary); margin-top: 20px;">Vérification technique...</h3>
+    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Nous recherchons des installateurs qualifiés IRVE disponibles dans votre secteur des Bouches-du-Rhône.</p>
+  </div>
+</div>
+
+<style>
+  .options-grid-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+  .option-box-small {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    background: #fff;
+    color: var(--primary);
+    transition: all 0.2s ease;
+  }
+  .option-box-small:hover {
+    border-color: var(--accent);
+    background: var(--primary-light);
+  }
+  .option-box-small.active {
+    border-color: var(--accent);
+    background: rgba(244, 63, 94, 0.08);
+    color: var(--accent-hover);
+  }
+  .desc-text {
+    font-size: 11.5px;
+    font-weight: normal;
+    color: var(--text-muted);
+    margin-top: 2px;
+    display: block;
+  }
+  .input-tip {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    display: block;
+  }
+  .form-group-row {
+    display: flex;
+    gap: 15px;
+  }
+  .form-group-row .form-group {
+    flex: 1;
+  }
+  .alert-danger {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  import communes from '../data/communes.json';
+
+  const nextBtns = document.querySelectorAll('.next-btn');
+  const prevBtns = document.querySelectorAll('.prev-btn');
+  const form = document.getElementById('borne-lead-form');
+  const formSubmitting = document.getElementById('form-submitting');
+  const formErrors = document.getElementById('form-errors');
+  const pcInput = document.getElementById('postal_code') as HTMLInputElement;
+  const villeGroup = document.getElementById('ville-group');
+  const villeInput = document.getElementById('ville_chantier') as HTMLInputElement;
+
+  // Handle Box Option Clicks (Step 1 & Step 3)
+  document.querySelectorAll('.option-box').forEach(box => {
+    box.addEventListener('click', () => {
+      const step = box.getAttribute('data-step');
+      const value = box.getAttribute('data-value');
+      
+      document.querySelectorAll(`.option-box[data-step="${step}"]`).forEach(b => {
+        b.classList.remove('active');
+      });
+      
+      box.classList.add('active');
+      
+      if (step === '1') {
+        const input = document.getElementById('cat_id') as HTMLInputElement;
+        if (input) input.value = value || '';
+      } else if (step === '3') {
+        const input = document.getElementById('chauffage_actuel') as HTMLInputElement;
+        if (input) input.value = value || '';
+      }
+    });
+  });
+
+  // Handle Small Box Row clicks (Step 2, 2b, 3b, 4b)
+  document.querySelectorAll('.option-box-small').forEach(box => {
+    box.addEventListener('click', () => {
+      const step = box.getAttribute('data-step');
+      const value = box.getAttribute('data-value');
+      const field = box.getAttribute('data-field');
+      
+      document.querySelectorAll(`.option-box-small[data-step="${step}"]`).forEach(b => {
+        b.classList.remove('active');
+      });
+      box.classList.add('active');
+      
+      const hiddenInput = document.getElementById(field || '') as HTMLInputElement;
+      if (hiddenInput) {
+        hiddenInput.value = value || '';
+      }
+    });
+  });
+
+  // Auto-resolve city name from codePostal (Bouches-du-Rhône 13 prefix)
+  if (pcInput) {
+    pcInput.addEventListener('input', () => {
+      const cpVal = pcInput.value.trim();
+      if (/^13\d{3}$/.test(cpVal)) {
+        const found = communes.find(c => c.codePostal === cpVal);
+        if (found) {
+          villeInput.value = found.nom;
+          if (villeGroup) villeGroup.style.display = 'block';
+          villeInput.readOnly = true;
+        } else {
+          if (villeGroup) villeGroup.style.display = 'block';
+          villeInput.value = '';
+          villeInput.readOnly = false;
+        }
+      } else {
+        if (villeGroup) villeGroup.style.display = 'none';
+        villeInput.value = '';
+      }
+    });
+  }
+
+  // Next Step Navigation
+  nextBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nextStepId = btn.getAttribute('data-next');
+      const currentStep = btn.closest('.step-container') as HTMLElement;
+      
+      if (nextStepId === '5') {
+        const cpVal = pcInput.value.trim();
+        if (!/^13\d{3}$/.test(cpVal)) {
+          alert('Veuillez entrer un code postal des Bouches-du-Rhône valide (commençant par 13).');
+          return;
+        }
+        if (!villeInput.value.trim()) {
+          alert('Veuillez spécifier la ville.');
+          return;
+        }
+      }
+
+      if (currentStep) currentStep.style.display = 'none';
+      const targetStep = document.getElementById(`step-${nextStepId}`);
+      if (targetStep) targetStep.style.display = 'block';
+    });
+  });
+
+  // Previous Step Navigation
+  prevBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const prevStepId = btn.getAttribute('data-prev');
+      const currentStep = btn.closest('.step-container') as HTMLElement;
+      
+      if (currentStep) currentStep.style.display = 'none';
+      const targetStep = document.getElementById(`step-${prevStepId}`);
+      if (targetStep) targetStep.style.display = 'block';
+    });
+  });
+
+  // Form Submission
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    if (formErrors) {
+      formErrors.style.display = 'none';
+      formErrors.innerHTML = '';
+    }
+
+    const formData = new FormData(form as HTMLFormElement);
+    const catIdVal = Number(document.getElementById('cat_id')?.getAttribute('value') || (document.getElementById('cat_id') as HTMLInputElement)?.value || 281);
+    
+    const typeBienLabel = (document.getElementById('type_bien') as HTMLInputElement)?.value === '1' ? 'Maison' : 'Appartement';
+    const statusLabel = (document.getElementById('situation') as HTMLInputElement)?.value === '1' ? 'Propriétaire' : 'Locataire';
+    const supplyLabel = (document.getElementById('chauffage_actuel') as HTMLInputElement)?.value || 'Monophasé';
+    const positionLabel = (document.getElementById('parking_position') as HTMLInputElement)?.value || 'Garage';
+    
+    const payload = {
+      nom: (formData.get('nom') as string || '').trim(),
+      prenom: (formData.get('prenom') as string || '').trim(),
+      email: (formData.get('email') as string || '').trim(),
+      tel: (formData.get('phone') as string || '').trim(),
+      adresse: (formData.get('adresse') as string || '').trim(),
+      cp: (formData.get('postal_code') as string || '').trim(),
+      ville: (formData.get('ville_chantier') as string || '').trim(),
+      catId: catIdVal,
+      typeBien: (document.getElementById('type_bien') as HTMLInputElement)?.value || '1',
+      situation: (document.getElementById('situation') as HTMLInputElement)?.value || '1',
+      chauffageActuel: `Réseau ${supplyLabel}, Emplacement: ${positionLabel}, Statut: ${statusLabel}`,
+      delais: (document.getElementById('delais') as HTMLInputElement)?.value || '1',
+      pageUrl: window.location.href
+    };
+
+    const step5 = document.getElementById('step-5') as HTMLElement;
+    if (step5) step5.style.display = 'none';
+    if (formSubmitting) formSubmitting.style.display = 'block';
+
+    try {
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.errors?.join('<br/>') || 'Une erreur est survenue lors de la soumission de votre projet.');
+      }
+
+      window.location.href = `/confirmation?devis_id=${data.devis_id}&devis_hash=${data.devis_hash}&prenom=${encodeURIComponent(payload.prenom)}&ville=${encodeURIComponent(payload.ville)}&cat=${payload.catId}`;
+
+    } catch (err: any) {
+      console.error(err);
+      
+      if (formSubmitting) formSubmitting.style.display = 'none';
+      if (step5) step5.style.display = 'block';
+      
+      if (formErrors) {
+        formErrors.style.display = 'block';
+        formErrors.innerHTML = err.message || 'Une erreur est survenue lors de l\'envoi du devis. Veuillez réessayer.';
+      }
+    }
+  });
+</script>

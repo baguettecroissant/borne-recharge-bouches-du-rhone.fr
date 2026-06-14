@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+
+const title = `ZFE Métropole Marseille-Provence 2026 — Restrictions Crit'Air & Recharges`;
+const description = `Calendrier Crit'Air, périmètre de la ZFE Marseille et Aix-en-Provence, et subventions locales pour l'installation d'une borne de recharge pour VE.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "ZFE Marseille" }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup 
+    slot="head" 
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section class="static-page-section" style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div class="two-column-layout">
+        
+        <!-- Main Content -->
+        <div class="static-main-content rich-text" style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+          <h1 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">ZFE Métropole Aix-Marseille-Provence (ZFE-m) — Calendrier &amp; Solutions de Recharge 2026</h1>
+          
+          <p>
+            La Zone à Faibles Émissions Mobilité (ZFE-m) de la Métropole d'Aix-Marseille-Provence est entrée dans sa phase active de restriction. Conçue pour lutter contre la pollution atmosphérique en interdisant la circulation des véhicules les plus polluants dans le centre-ville marseillais, elle accélère fortement la transition vers les véhicules hybrides et 100% électriques dans les Bouches-du-Rhône (13).
+          </p>
+
+          <blockquote style="border-left: 4px solid var(--accent); background: var(--primary-light); padding: 15px 20px; margin: 25px 0; border-radius: var(--radius-sm); color: var(--primary);">
+            <strong>📌 Info ZFE 2026 :</strong> Les véhicules Crit'Air 3 (moteurs diesel d'avant 2011 et essence d'avant 2006) sont désormais interdits de circulation au sein du périmètre marseillais. Seuls les véhicules Crit'Air 1, 2 et 0 (Électriques et Hydrogènes) peuvent circuler librement et stationner de manière pérenne.
+          </blockquote>
+
+          <h2>1. Le Périmètre de la ZFE de Marseille</h2>
+          <p>
+            La ZFE-m de Marseille couvre une superficie de 19,5 km² abritant près de 320 000 habitants. Ses limites physiques sont délimitées par les grands axes routiers intérieurs de la cité phocéenne :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Au Nord :</strong> Le boulevard de Plombières (limite entre les 3e et 14e arrondissements).</li>
+            <li><strong>À l'Est :</strong> Le boulevard de la Blancarde, le Jarret (boulevards Sakakini et Jean Moulin).</li>
+            <li><strong>Au Sud :</strong> Le boulevard Rabatau, le rond-point du Prado et l'avenue du Prado (jusqu'à la mer).</li>
+            <li><strong>À l'Ouest :</strong> Le littoral (Vieux-Port, Joliette, autoroute A55).</li>
+          </ul>
+          <p>
+            Toutes les voies situées à l'intérieur de ce périmètre sont soumises aux restrictions de la ZFE 24h/24 et 7j/7. Les contrôles automatisés (radars de lecture de plaques d'immatriculation) exposent les contrevenants à une amende forfaitaire de 68 € (pouvant monter à 135 €).
+          </p>
+
+          <h2>2. Le Calendrier d'Interdiction de Circulation (Crit'Air)</h2>
+          <p>
+            Pour rouler légalement dans le périmètre marseillais, votre véhicule doit disposer d'une vignette Crit'Air apposée sur le pare-brise. Voici l'évolution des interdictions :
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Catégorie Vignette</th>
+                <th>Moteurs Concernés</th>
+                <th>Statut Circulation ZFE Marseille</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Crit'Air 5 / Non classés</strong></td>
+                <td>Diesels anciens (&lt; 2001)</td>
+                <td style="color: #b91c1c; font-weight: bold;">⛔ Interdit total</td>
+              </tr>
+              <tr>
+                <td><strong>Crit'Air 4</strong></td>
+                <td>Diesels intermédiaires (&lt; 2006)</td>
+                <td style="color: #b91c1c; font-weight: bold;">⛔ Interdit total</td>
+              </tr>
+              <tr>
+                <td><strong>Crit'Air 3</strong></td>
+                <td>Diesels &lt; 2011, Essence &lt; 2006</td>
+                <td style="color: #b91c1c; font-weight: bold;">⛔ Interdit depuis fin 2024 / 2025</td>
+              </tr>
+              <tr>
+                <td><strong>Crit'Air 2</strong></td>
+                <td>Diesels post-2011, Essence &lt; 2011</td>
+                <td style="color: var(--success); font-weight: bold;">✅ Autorisé temporairement</td>
+              </tr>
+              <tr>
+                <td><strong>Crit'Air 1 &amp; 0 (Vert)</strong></td>
+                <td>Essences récents, Hybrides &amp; VE</td>
+                <td style="color: var(--success); font-weight: bold;">🚀 Libre accès permanent</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>3. Passer à l'électrique en Provence : Pourquoi la borne privée est indispensable ?</h2>
+          <p>
+            Avec le durcissement de la ZFE, la demande de véhicules électriques (VE) explose à Marseille, Aix-en-Provence, Aubagne et Martigues. Cependant, la Métropole Aix-Marseille-Provence fait face à une saturation de ses infrastructures de charge publiques (réseau de bornes de voirie Larecharge, anciennement intégrées à l'ancien réseau métropolitain).
+          </p>
+          <p>
+            Avoir sa propre solution de charge à domicile présente des avantages incontournables :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Le Coût au kilomètre imbattable :</strong> Charger sur une borne publique coûte souvent entre 0,45 € et 0,65 € par kWh. À domicile, avec un contrat d'électricité en heures creuses en Provence, vous ne payez que 0,16 € à 0,20 € le kWh, soit une recharge 3x moins chère !</li>
+            <li><strong>Le Confort au quotidien :</strong> Plus besoin de chercher une borne publique disponible ou de subir les voitures ventouses sur les places de voirie marseillaises. Vous branchez votre VE le soir et repartez avec 100% d'autonomie le lendemain matin.</li>
+            <li><strong>Valorisation immobilière :</strong> Équiper son garage de villa provençale ou sa place de parking en sous-sol à Marseille d'une wallbox augmente de façon sensible la valeur verte du bien immobilier lors d'une revente ou d'une location.</li>
+          </ul>
+
+          <h2>4. Droit à la prise en copropriété à Marseille (ZFE-m)</h2>
+          <p>
+            Une grande partie de la population résidant au sein de la ZFE marseillaise habite en appartement (immeubles du centre-ville, résidences de standing du 8e, 9e ou du Prado). Si vous êtes dans ce cas, vous bénéficiez légalement du <strong>Droit à la prise</strong> :
+          </p>
+          <p>
+            Ce dispositif vous permet d'installer à vos frais une borne de recharge individuelle sur votre place de parking privée (box ou place extérieure). Le syndic de copropriété ne peut s'y opposer sans motif légitime et sérieux (ex. décision de créer une infrastructure collective globale dans l'immeuble). De plus, le programme ADVENIR finance 50% de vos travaux à hauteur de 960 € pour ce raccordement.
+          </p>
+
+          <div style="background: var(--primary-light); border: 1.5px solid var(--border-color); padding: 25px; border-radius: var(--radius-md); margin-top: 40px;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 17px; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📚 Pour aller plus loin</h3>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; margin-bottom: 0;">
+              <li>🏢 <a href="/guides/borne-recharge-copropriete-marseille-droit-prise/" style="color: var(--secondary); font-weight: 700;">Droit à la prise en copropriété à Marseille</a> — Démarches et AG</li>
+              <li>💰 <a href="/tarifs/" style="color: var(--secondary); font-weight: 700;">Tarifs complets des installations dans le 13</a> — Grille 2026</li>
+              <li>💶 <a href="/aides-advenir/" style="color: var(--secondary); font-weight: 700;">Subventions & Aides de l'État</a> — Financer 50% à 70% de la borne</li>
+              <li>🛠️ <a href="/guide-installation/" style="color: var(--secondary); font-weight: 700;">Guide d'installation technique</a> — Normes électriques NFC 15-100</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="static-sidebar">
+          <div class="sidebar-widget bg-cyan-gradient">
+            <h3>🚗 Anticipez la ZFE-m</h3>
+            <p>Votre véhicule actuel est Crit'Air 3 ou 4 ? Préparez votre transition vers l'électrique et estimez le coût d'une borne à domicile.</p>
+            <a href="/devis/" class="sidebar-cta-coral">Demander 3 devis gratuits →</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>👮 Risque d'Amende</h3>
+            <p style="font-size: 13px;">Circuler dans la ZFE de Marseille avec un véhicule interdit ou sans vignette Crit'Air est puni d'une amende de <strong>68 €</strong> pour les voitures et 135 € pour les utilitaires et poids lourds.</p>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>🌱 Qualité de l'air</h3>
+            <p style="font-size: 13px;">L'objectif de la ZFE Marseille est de réduire de 30% les émissions d'oxydes d'azote (NOx) et de particules fines dans le centre phocéen, améliorant la santé respiratoire des marseillais.</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 992px) {
+    .two-column-layout {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

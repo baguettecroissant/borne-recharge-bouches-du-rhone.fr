@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+
+const title = `Aides ADVENIR & Subventions Borne de Recharge Bouches-du-Rhône 2026`;
+const description = `Estimez le montant de vos subventions pour la pose de votre borne électrique dans le 13 : Crédit d'impôt 500 €, Prime ADVENIR 2026, TVA 5,5%.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Aides ADVENIR 2026" }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup 
+    slot="head" 
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section class="static-page-section" style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div class="two-column-layout">
+        
+        <!-- Main Content -->
+        <div class="static-main-content rich-text" style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+          <h1 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">Aides Financières & Subventions Borne de Recharge Bouches-du-Rhône (13) — Guide Complet 2026</h1>
+          
+          <p>
+            L'installation d'une borne de recharge chez soi ou dans sa copropriété représente un investissement conséquent (entre 1 300 € et 3 800 € TTC — voir notre <a href="/tarifs/" style="color: var(--secondary); font-weight: 700;">grille tarifaire complète</a>). La bonne nouvelle ? L'État, la Métropole d'Aix-Marseille-Provence (AMP) et les collectivités locales proposent un arsenal d'aides financières cumulables qui peuvent réduire votre reste à charge de 30 à 70 % selon votre situation.
+          </p>
+
+          <blockquote style="border-left: 4px solid var(--accent); background: var(--primary-light); padding: 15px 20px; margin: 25px 0; border-radius: var(--radius-sm); color: var(--primary);">
+            <strong>💡 À retenir :</strong> Toutes ces aides sont conditionnées à l'intervention d'un <strong>électricien certifié IRVE</strong>. Un artisan non qualifié vous fait perdre 100 % de vos droits aux subventions. Vérifiez systématiquement la qualification avant de signer.
+          </blockquote>
+
+          <h2>1. Le Crédit d'Impôt National 2026 — 500 € par Point de Charge</h2>
+          <p>
+            Reconduit et revalorisé dans la Loi de Finances 2026, ce crédit d'impôt est le dispositif le plus accessible car il ne comporte <strong>aucune condition de ressources</strong> :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Montant :</strong> Égal à 75% du montant des dépenses (achat de la borne + pose par l'électricien), plafonné à <strong>500 € par point de charge</strong>. Si vous installez 2 bornes (ex. une dans le garage et une sur le parking), vous obtenez 2 × 500 € = 1 000 € de crédit d'impôt.</li>
+            <li><strong>Bénéficiaires :</strong> Tous les contribuables résidant en France — propriétaires, locataires ou occupants à titre gratuit. Applicable en résidence principale <strong>ET</strong> secondaire (villa provençale, mas de vacances).</li>
+            <li><strong>Comment le déclarer :</strong> Renseignez le montant dans la case <strong>7ZQ</strong> de votre déclaration de revenus. Le crédit est versé l'année suivante, directement déduit de votre impôt ou remboursé par virement si vous êtes non-imposable.</li>
+            <li><strong>Condition stricte :</strong> La facture doit provenir d'une entreprise titulaire de la qualification IRVE.</li>
+          </ul>
+
+          <h2>2. Le Programme ADVENIR 2026 en Copropriété</h2>
+          <p>
+            Le programme ADVENIR cible spécifiquement l'installation de bornes en habitat collectif. Dans les Bouches-du-Rhône, les grandes copropriétés de Marseille (1er-16e), d'Aix-en-Provence, d'Aubagne, de Vitrolles et de La Ciotat sont particulièrement concernées. Pour comprendre les spécificités du droit à la prise en copropriété, consultez notre <a href="/guides/borne-recharge-copropriete-marseille-droit-prise/" style="color: var(--secondary); font-weight: 700;">guide dédié copropriété et droit à la prise</a>.
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Borne individuelle (droit à la prise) :</strong> Financement de <strong>50% du devis HT</strong>, plafonné à <strong>960 € TTC</strong> par point de charge.</li>
+            <li><strong>Infrastructure collective de parking :</strong> Financement de 50% des travaux de raccordement général (géré par le syndic), jusqu'à <strong>8 000 €</strong> selon le nombre de places équipées. Cela couvre le câblage colonne montante, le tableau divisionnaire de parking, et les protections électriques.</li>
+            <li><strong>Borne accessible au public (commerce, hôtel, PME) :</strong> Financement jusqu'à <strong>30% du devis</strong> si la borne est référencée sur une application de recharge ouverte (OCPP).</li>
+          </ul>
+
+          <h2>3. Le Bonus Électrification de la Métropole AMP</h2>
+          <p>
+            La Métropole d'Aix-Marseille-Provence, dans le cadre de l'accompagnement à sa Zone à Faibles Émissions (ZFE), propose des subventions pour aider les résidents à s'équiper. Ces aides peuvent cibler des abonnements de stationnement avec borne de recharge intégrée ou abonder la prime ADVENIR pour l'équipement de places privées en habitat collectif sous condition de ressources ou d'achat de véhicules électriques.
+          </p>
+
+          <h2>4. La TVA Réduite à 5,5%</h2>
+          <p>
+            Normalement fixée à 20%, la TVA est ramenée à <strong>5,5%</strong> sur l'ensemble du chantier (matériel + main d'œuvre) si votre logement — maison individuelle ou appartement — a été achevé depuis plus de 2 ans. Sur un chantier à 2 500 € HT, cela représente une économie directe de <strong>362 € de TVA</strong> (625 € à 20% vs 137,50 € à 5,5%).
+          </p>
+
+          <h2>5. Tableau récapitulatif — Cumul des Aides 2026</h2>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Dispositif d'Aide</th>
+                <th>Maison Individuelle</th>
+                <th>Copropriété / Appartement</th>
+                <th>Condition majeure</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Crédit d'impôt national</strong></td>
+                <td class="price">500 €</td>
+                <td class="price">500 €</td>
+                <td>Électricien IRVE obligatoire</td>
+              </tr>
+              <tr>
+                <td><strong>Prime ADVENIR Individuelle</strong></td>
+                <td class="price">Non éligible</td>
+                <td class="price">Jusqu'à 960 € (50%)</td>
+                <td>Parking collectif / Immeuble</td>
+              </tr>
+              <tr>
+                <td><strong>TVA Réduite</strong></td>
+                <td class="price">5,5% (au lieu de 20%)</td>
+                <td class="price">5,5% (au lieu de 20%)</td>
+                <td>Logement de plus de 2 ans</td>
+              </tr>
+              <tr>
+                <td><strong>Aide Métropole AMP</strong></td>
+                <td class="price">Selon conditions Métropole</td>
+                <td class="price">Selon conditions Métropole</td>
+                <td>Habiter ou travailler dans la ZFE</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>6. Les 3 Erreurs qui Font Perdre vos Aides</h2>
+          <ol style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>Signer le devis avant de déposer le dossier ADVENIR :</strong> Le programme ADVENIR exige que la demande soit validée <em>avant</em> le début des travaux. Si vous signez le devis trop tôt, votre dossier sera refusé automatiquement.</li>
+            <li><strong>Faire poser par un artisan non qualifié IRVE :</strong> Un électricien classique n'a pas la qualification IRVE. Sans cette qualification sur la facture, aucune aide ne sera versée. Consultez notre <a href="/guide-installation/" style="color: var(--secondary); font-weight: 700;">guide technique</a> pour en savoir plus.</li>
+            <li><strong>Oublier l'attestation de conformité :</strong> L'installateur doit vous remettre un certificat Consuel IRVE, indispensable pour le remboursement.</li>
+          </ol>
+
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 30px;">
+            ⚠️ <strong>Important :</strong> Toutes ces aides sont soumises à la facturation unique d'un installateur certifié IRVE. Ne signez pas de devis et ne versez pas d'acompte avant d'avoir déposé votre demande technique, sous peine de nullité de votre éligibilité.
+          </p>
+
+          <div style="background: var(--primary-light); border: 1.5px solid var(--border-color); padding: 25px; border-radius: var(--radius-md); margin-top: 40px;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 17px; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📚 Pour aller plus loin</h3>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; margin-bottom: 0;">
+              <li>💰 <a href="/tarifs/" style="color: var(--secondary); font-weight: 700;">Tarifs d'installation dans le 13 (2026)</a> — Combien coûte réellement une borne ?</li>
+              <li>🏢 <a href="/guides/borne-recharge-copropriete-marseille-droit-prise/" style="color: var(--secondary); font-weight: 700;">Borne en copropriété & droit à la prise</a> — Procédure complète</li>
+              <li>💶 <a href="/guides/prix-borne-recharge-bouches-du-rhone-2026/" style="color: var(--secondary); font-weight: 700;">Prix détaillé par type de borne</a> — Budget réaliste</li>
+              <li>🛠️ <a href="/guide-installation/" style="color: var(--secondary); font-weight: 700;">Guide technique d'installation</a> — Normes et câblage</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="static-sidebar">
+          <div class="sidebar-widget bg-cyan-gradient">
+            <h3>🧮 Simulez vos Aides</h3>
+            <p>Notre simulateur calcule instantanément votre crédit d'impôt et vos primes de raccordement pour votre véhicule.</p>
+            <a href="/devis/" class="sidebar-cta-coral">Calculer mes aides →</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>🛡️ Rôle d'Enedis</h3>
+            <p style="font-size: 13px;">Enedis Provence s'occupe de la modification de votre compteur principal Linky (passage au triphasé si besoin), tandis que l'électricien IRVE gère la pose de la borne et des protections. En savoir plus sur <a href="/guides/recharge-ve-heures-creuses-edf-provence/" style="color: var(--secondary); font-weight: 700;">le choix monophasé/triphasé</a>.</p>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>📊 Budget moyen dans le 13</h3>
+            <p style="font-size: 13px;">Après déduction de toutes les aides, le reste à charge moyen pour une wallbox 7,4 kW dans les Bouches-du-Rhône est de <strong>800 à 1 350 €</strong>.</p>
+            <a href="/tarifs/" style="color: var(--secondary); font-weight: 700; font-size: 13px;">Voir le détail des tarifs →</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 992px) {
+    .two-column-layout {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import config from '../data/config.json';
+
+const title = `Demande de devis enregistrée – ${config.brandName}`;
+const description = `Votre demande d'installation de borne de recharge a bien été enregistrée. Un électricien certifié IRVE des Bouches-du-Rhône (13) va vous contacter.`;
+---
+
+<Layout title={title} description={description} robots="noindex, nofollow">
+  <section class="confirmation-section" style="padding: 70px 0 90px; background-color: var(--bg);">
+    <div class="container confirmation-box-container" style="max-width: 680px; margin: 0 auto; text-align: center; background: var(--card-bg); padding: 50px 40px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-lg);">
+      <div class="success-icon" style="font-size: 64px; margin-bottom: 20px;">⚡</div>
+      <h1 id="thank-you-title" style="font-size: 30px; margin-bottom: 10px; color: var(--primary); font-family: var(--font-heading);">Merci pour votre demande !</h1>
+      <p class="subtitle" id="thank-you-subtitle" style="font-size: 15.5px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.5;">Votre dossier d'éligibilité aux aides 2026 est en cours d'analyse technique.</p>
+
+      <div class="summary-card" style="background: var(--primary-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; margin-bottom: 25px; text-align: left;">
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 10px; margin-top: 0;">📋 Détails de votre projet</h3>
+        <ul class="summary-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px;">
+          <li style="display: flex; justify-content: space-between;"><strong>Département :</strong> <span id="project-ville">Bouches-du-Rhône (13)</span></li>
+          <li style="display: flex; justify-content: space-between;"><strong>Type de demande :</strong> <span id="project-category">Installation de Borne de Recharge</span></li>
+          <li style="display: flex; justify-content: space-between;"><strong>Référence dossier :</strong> <span id="project-ref" class="mono-ref" style="font-family: var(--font-mono); color: var(--accent); font-weight: 700;">#EV-13-XXXX</span></li>
+        </ul>
+      </div>
+
+      <div class="next-steps-card" style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; margin-bottom: 35px; text-align: left;">
+        <h3 style="font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 15px; margin-top: 0;">⏱️ Que va-t-il se passer ensuite ?</h3>
+        <div class="steps-flow" style="display: flex; flex-direction: column; gap: 18px;">
+          <div class="step-flow-item" style="display: flex; gap: 14px;">
+            <span class="step-num" style="background: var(--primary); color: white; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 12px; flex-shrink: 0; margin-top: 2px;">1</span>
+            <div>
+              <h4 style="font-size: 14.5px; font-weight: 700; color: var(--primary); margin-bottom: 2px;">Validation réglementaire</h4>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.45; margin: 0;">Un expert étudie votre type de compteur (monophasé/triphasé) et calcule vos subventions cumulables (Crédit d'impôt, prime ADVENIR ou aide métropolitaine de la métropole AMP).</p>
+            </div>
+          </div>
+          <div class="step-flow-item" style="display: flex; gap: 14px;">
+            <span class="step-num" style="background: var(--primary); color: white; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 12px; flex-shrink: 0; margin-top: 2px;">2</span>
+            <div>
+              <h4 style="font-size: 14.5px; font-weight: 700; color: var(--primary); margin-bottom: 2px;">Appel de validation</h4>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.45; margin: 0;">Vous allez recevoir un court appel téléphonique sous 24h ouvrées pour valider l'emplacement de la borne et confirmer l'envoi de l'électricien.</p>
+            </div>
+          </div>
+          <div class="step-flow-item" style="display: flex; gap: 14px;">
+            <span class="step-num" style="background: var(--primary); color: white; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 12px; flex-shrink: 0; margin-top: 2px;">3</span>
+            <div>
+              <h4 style="font-size: 14.5px; font-weight: 700; color: var(--primary); margin-bottom: 2px;">Visite technique &amp; devis</h4>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.45; margin: 0;">Jusqu'à 3 installateurs qualifiés IRVE proches de votre commune réalisent une visite technique d'implantation gratuite et vous transmettent leurs devis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons" style="display: flex; gap: 12px; justify-content: center;">
+        <a href="/" class="btn-home" style="background: var(--primary); color: white; padding: 11px 22px; border-radius: 50px; font-weight: 700; font-size: 14px; text-decoration: none; transition: var(--transition);">Retourner à l'accueil</a>
+        <a href="/tarifs/" class="btn-tarifs" style="background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-color); padding: 11px 22px; border-radius: 50px; font-weight: 700; font-size: 14px; text-decoration: none; transition: var(--transition);">Consulter les tarifs</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .success-icon {
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @media (max-width: 576px) {
+    .action-buttons {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const prenom = params.get('prenom');
+    const ville = params.get('ville');
+    const devisId = params.get('devis_id');
+    const catId = params.get('cat');
+
+    if (prenom) {
+      const titleEl = document.getElementById('thank-you-title');
+      if (titleEl) titleEl.innerText = `Merci ${prenom} !`;
+    }
+
+    if (ville) {
+      const villeEl = document.getElementById('project-ville');
+      if (villeEl) villeEl.innerText = `${ville} (13)`;
+    }
+
+    if (devisId) {
+      const refEl = document.getElementById('project-ref');
+      if (refEl) refEl.innerText = `#EV-13-${devisId.slice(0, 5).toUpperCase()}`;
+    }
+
+    if (catId) {
+      const catEl = document.getElementById('project-category');
+      if (catEl) {
+        if (catId === '281') {
+          catEl.innerText = "Pose de Borne de Recharge (Wallbox)";
+        } else if (catId === '282') {
+          catEl.innerText = "Pose de Prise de Recharge renforcée (Green'Up)";
+        }
+      }
+    }
+  });
+</script>

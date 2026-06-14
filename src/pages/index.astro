@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+import communes from '../data/communes.json';
+
+const title = `${config.brandName} | Installateur Borne de Recharge IRVE Bouches-du-Rhône (13)`;
+const description = config.description;
+
+// Selection of popular communes for home directory listing
+const popularCommunes = communes.slice(0, 24);
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup
+    slot="head"
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+  />
+
+  <!-- Hero Section with background illustration and multi-step form -->
+  <Hero />
+
+  <!-- Department & Local Stats Bar -->
+  <section class="local-stats-bar" style="background-color: var(--primary-light); border-bottom: 1px solid var(--border-color); padding: 24px 0;">
+    <div class="container stats-inner" style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div class="stat-item" style="text-align: center; display: flex; flex-direction: column; gap: 4px;">
+        <span class="stat-number" style="font-family: var(--font-heading); font-weight: 700; font-size: 28px; color: var(--accent); line-height: 1;">100+</span>
+        <span class="stat-label" style="font-size: 13.5px; font-weight: 700; color: var(--primary);">Villes Desservies dans le 13</span>
+      </div>
+      <div class="stat-item" style="text-align: center; display: flex; flex-direction: column; gap: 4px;">
+        <span class="stat-number" style="font-family: var(--font-heading); font-weight: 700; font-size: 28px; color: var(--accent); line-height: 1;">IRVE</span>
+        <span class="stat-label" style="font-size: 13.5px; font-weight: 700; color: var(--primary);">Qualification Obligatoire</span>
+      </div>
+      <div class="stat-item" style="text-align: center; display: flex; flex-direction: column; gap: 4px;">
+        <span class="stat-number" style="font-family: var(--font-heading); font-weight: 700; font-size: 28px; color: var(--accent); line-height: 1;">500 €</span>
+        <span class="stat-label" style="font-size: 13.5px; font-weight: 700; color: var(--primary);">Crédit d'Impôt National</span>
+      </div>
+      <div class="stat-item" style="text-align: center; display: flex; flex-direction: column; gap: 4px;">
+        <span class="stat-number" style="font-family: var(--font-heading); font-weight: 700; font-size: 28px; color: var(--accent); line-height: 1;">-80%</span>
+        <span class="stat-label" style="font-size: 13.5px; font-weight: 700; color: var(--primary);">Coût de charge vs Essence</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Section -->
+  <section class="educational-section" style="padding: 70px 0; background-color: var(--card-bg);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 32px; color: var(--primary);">Recharge Électrique à domicile dans les Bouches-du-Rhône (13)</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-top: 10px;">Pourquoi équiper votre villa provençale ou copropriété d'une Wallbox dédiée ?</p>
+      </div>
+
+      <div class="educational-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <div class="edu-card" style="background: var(--bg); border: 1px solid var(--border-color); padding: 30px 24px; border-radius: var(--radius-md); transition: var(--transition);">
+          <div style="font-size: 32px; margin-bottom: 12px;">🚗</div>
+          <h3 style="font-size: 18px; margin-bottom: 8px;">ZFE Métropole Marseille</h3>
+          <p style="font-size: 14.5px; color: var(--text-muted); line-height: 1.5;">Le calendrier Crit'Air s'accélère à Marseille et dans la métropole AMP. Disposer d'une borne privée à Marseille, Aix-en-Provence ou Aubagne est la seule façon de garantir des recharges rapides à moindre coût et d'éviter les restrictions de circulation.</p>
+        </div>
+        <div class="edu-card" style="background: var(--bg); border: 1px solid var(--border-color); padding: 30px 24px; border-radius: var(--radius-md); transition: var(--transition);">
+          <div style="font-size: 32px; margin-bottom: 12px;">🛡️</div>
+          <h3 style="font-size: 18px; margin-bottom: 8px;">Sécurité Électrique IRVE</h3>
+          <p style="font-size: 14.5px; color: var(--text-muted); line-height: 1.5;">Recharger sur prise domestique simple pendant 15 heures fatigue votre réseau et présente un risque d'échauffement majeur. La Wallbox s'accompagne d'interrupteurs différentiels de type A-EV et disjoncteurs certifiés obligatoires.</p>
+        </div>
+        <div class="edu-card" style="background: var(--bg); border: 1px solid var(--border-color); padding: 30px 24px; border-radius: var(--radius-md); transition: var(--transition);">
+          <div style="font-size: 32px; margin-bottom: 12px;">🔌</div>
+          <h3 style="font-size: 18px; margin-bottom: 8px;">Pilotage Intelligent Linky</h3>
+          <p style="font-size: 14.5px; color: var(--text-muted); line-height: 1.5;">Nos électriciens qualifiés programment votre borne durant les heures creuses d'Enedis en Provence. Le délestage dynamique adapte en continu la vitesse de charge pour protéger le réseau général lors des pics (clim, chauffe-eau).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparative Pricing Grid -->
+  <section class="pricing-summary" style="padding: 70px 0; background-color: var(--bg); border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 32px; color: var(--primary);">Quel budget pour votre Borne de Recharge en 2026 ?</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-top: 10px;">Tarifs moyens posés TTC observés dans le département des Bouches-du-Rhône (avant déduction d'aides)</p>
+      </div>
+
+      <div class="pricing-grid-home" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch;">
+        <!-- Green'up Card -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 35px 25px; position: relative; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: var(--transition);">
+          <h3 style="font-size: 19px; margin-bottom: 10px;">Prise Renforcée Green'Up</h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; min-height: 40px;">La solution économique pour les recharges résidentielles lentes de nuit (hybrides ou petits trajets).</p>
+          <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 20px; border-bottom: 2px solid var(--primary-light); padding-bottom: 15px;">450 € – 750 € <span style="display: block; font-size: 11px; color: var(--text-muted); font-family: var(--font-body); font-weight: normal; margin-top: 2px;">TTC posé (Standard)</span></div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Recharge sécurisée à 3.7 kW (16A)</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Convient aux hybrides rechargeables</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Pose simple et rapide par électricien</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> TVA réduite à 5,5%</li>
+          </ul>
+          <a href="/tarifs/" style="background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-color); padding: 10px; border-radius: var(--radius-sm); text-align: center; font-weight: 700; font-size: 13.5px; transition: var(--transition);">En savoir plus &rarr;</a>
+        </div>
+
+        <!-- Wallbox 7.4kW -->
+        <div style="background: var(--card-bg); border: 1.5px solid var(--accent); border-radius: var(--radius-md); padding: 35px 25px; position: relative; display: flex; flex-direction: column; box-shadow: var(--shadow-md); transition: var(--transition);">
+          <div style="position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 4px; text-transform: uppercase;">Recommandé</div>
+          <h3 style="font-size: 19px; margin-bottom: 10px;">Wallbox 7.4 kW Monophasé</h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; min-height: 40px;">Le standard de la maison individuelle : recharge complète en une nuit (6 à 8 heures).</p>
+          <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 20px; border-bottom: 2px solid var(--primary-light); padding-bottom: 15px;">1 300 € – 1 900 € <span style="display: block; font-size: 11px; color: var(--text-muted); font-family: var(--font-body); font-weight: normal; margin-top: 2px;">TTC posé (Crédit d'impôt déductible)</span></div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Recharge rapide à 7.4 kW (32A)</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Compatible délestage dynamique Linky</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Éligible au crédit d'impôt de 500 €</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Câble Type 2 inclus pour recharges rapides</li>
+          </ul>
+          <a href="/tarifs/" style="background: var(--accent); color: white; padding: 10px; border-radius: var(--radius-sm); text-align: center; font-weight: 700; font-size: 13.5px; transition: var(--transition);">En savoir plus &rarr;</a>
+        </div>
+
+        <!-- Wallbox 11/22kW -->
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 35px 25px; position: relative; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: var(--transition);">
+          <h3 style="font-size: 19px; margin-bottom: 10px;">Wallbox 11 / 22 kW Triphasé</h3>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; min-height: 40px;">Recharge ultra-rapide en 1 à 3 heures (idéal professionnels, ou villas en triphasé).</p>
+          <div style="font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 20px; border-bottom: 2px solid var(--primary-light); padding-bottom: 15px;">1 600 € – 3 800 € <span style="display: block; font-size: 11px; color: var(--text-muted); font-family: var(--font-body); font-weight: normal; margin-top: 2px;">TTC posé (Professionnels &amp; grandes maisons)</span></div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 20px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Recharge rapide à 11 kW ou 22 kW</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Idéal Tesla, BMW, Audi, Zoe</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Passage en triphasé géré de bout en bout</li>
+            <li style="font-size: 13.5px; display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent); font-weight: bold;">✓</span> Protocoles de communication intelligents</li>
+          </ul>
+          <a href="/tarifs/" style="background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-color); padding: 10px; border-radius: var(--radius-sm); text-align: center; font-weight: 700; font-size: 13.5px; transition: var(--transition);">En savoir plus &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides & Conseils Experts Section -->
+  <section class="guides-section" style="padding: 70px 0; background-color: var(--card-bg); border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 32px; color: var(--primary);">📚 Guides & Conseils d'Experts</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-top: 10px;">Tout savoir sur la recharge de véhicule électrique dans le 13 avant de vous lancer</p>
+      </div>
+
+      <div class="guides-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <a href="/guide-installation/" style="background: var(--bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 28px;">🛠️</span>
+          <h3 style="font-size: 16px; color: var(--primary); margin: 0;">Guide Technique Installation</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Câblage, normes NF C 15-100, protections IRVE et étapes du chantier</p>
+        </a>
+        <a href="/aides-advenir/" style="background: var(--bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 28px;">💰</span>
+          <h3 style="font-size: 16px; color: var(--primary); margin: 0;">Aides ADVENIR & Subventions</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Crédit d'impôt 500 €, prime ADVENIR copropriété, TVA 5,5%</p>
+        </a>
+        <a href="/solaire-et-wallbox/" style="background: var(--bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 28px;">☀️</span>
+          <h3 style="font-size: 16px; color: var(--primary); margin: 0;">Solaire + Wallbox</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Recharger son véhicule électrique gratuitement grâce à l'autoconsommation provençale</p>
+        </a>
+        <a href="/guides/prix-borne-recharge-bouches-du-rhone-2026/" style="background: var(--bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 28px;">🔌</span>
+          <h3 style="font-size: 16px; color: var(--primary); margin: 0;">Prix Borne 13 (2026)</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Analyse complète des prix et subventions dans les Bouches-du-Rhône</p>
+        </a>
+        <a href="/guides/borne-recharge-copropriete-marseille-droit-prise/" style="background: var(--bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 28px;">🏢</span>
+          <h3 style="font-size: 16px; color: var(--primary); margin: 0;">Borne en Copropriété</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Droit à la prise à Marseille, démarches syndic et financement collectif</p>
+        </a>
+        <a href="/guides/wallbox-chaleur-provencale-protection-batterie/" style="background: var(--bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 28px;">🔥</span>
+          <h3 style="font-size: 16px; color: var(--primary); margin: 0;">Wallbox et Chaleur</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.45;">Comment protéger sa borne de recharge et sa batterie au-delà de 40°C</p>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="/guides/" style="display: inline-block; background: var(--primary-light); color: var(--primary); border: 1.5px solid var(--border-color); padding: 12px 28px; border-radius: 50px; font-family: var(--font-heading); font-weight: 700; font-size: 15px; transition: var(--transition);">📚 Voir tous nos guides →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Communes Directory -->
+  <section class="popular-cities" style="padding: 70px 0; background-color: var(--card-bg); border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 32px; color: var(--primary);">Trouver un installateur IRVE dans votre commune (13)</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-top: 10px;">Accédez aux aides régionales de Provence et comparez 3 devis d'électriciens qualifiés</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; margin-top: 30px;">
+        {popularCommunes.map((c) => (
+          <a href={`/installateur-borne-recharge-${c.slug}/`} style="background: var(--bg); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 15px 20px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); color: var(--primary);">
+            <span>{c.nom} <span style="font-size: 11px; font-weight: normal; color: var(--text-muted);">({c.codePostal})</span></span>
+            <span style="color: var(--accent);">&rarr;</span>
+          </a>
+        ))}
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="/communes/" style="display: inline-block; background: var(--primary-light); color: var(--primary); border: 1.5px solid var(--border-color); padding: 12px 28px; border-radius: 50px; font-family: var(--font-heading); font-weight: 700; font-size: 15px; transition: var(--transition);">📍 Voir toutes les communes des Bouches-du-Rhône (13)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="faq-section" style="padding: 70px 0; background-color: var(--bg); border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 32px; color: var(--primary);">Foire Aux Questions (FAQ)</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-top: 10px;">Tout comprendre sur l'installation d'une borne de recharge en Provence</p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px;">
+        <details class="faq-details">
+          <summary>
+            Pourquoi la qualification IRVE est-elle obligatoire dans le 13 ?
+          </summary>
+          <div class="faq-answer">
+            <p>Depuis le décret du 12 janvier 2017, tout point de recharge d'une puissance supérieure à 3.7 kW doit impérativement être installé par un électricien ayant suivi une formation spécifique et titulaire d'une qualification IRVE (Infrastructures de Recharge pour Véhicules Électriques) agréée par l'AFNOR ou Qualifelec. En l'absence de cette qualification, votre assurance habitation refusera toute indemnisation en cas de sinistre d'origine électrique, et les constructeurs automobiles rejetteront la garantie de la batterie du véhicule.</p>
+          </div>
+        </details>
+
+        <details class="faq-details">
+          <summary>
+            Quelles sont les aides à l'installation d'une borne en copropriété à Marseille ?
+          </summary>
+          <div class="faq-answer">
+            <p>En copropriété dans les Bouches-du-Rhône (13), vous disposez du "droit à la prise" (loi ALUR/décret de 2020) pour équiper votre place de parking à vos frais. Vous êtes alors éligible à :</p>
+            <ul style="margin-left: 20px; margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+              <li>La prime ADVENIR, couvrant 50% du montant des travaux avec un plafond de 960 € TTC par point de charge.</li>
+              <li>La TVA super-réduite à 5,5% sur le matériel et la main-d'œuvre.</li>
+              <li>Un crédit d'impôt national de 500 € pour les résidents.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-details">
+          <summary>
+            Combien de temps faut-il pour recharger une voiture électrique ?
+          </summary>
+          <div class="faq-answer">
+            <p>Le temps de charge dépend de la capacité de la batterie de votre voiture électrique (exprimée en kWh) et de la puissance du point de charge :</p>
+            <ul style="margin-left: 20px; margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+              <li>Sur une prise standard (2.3 kW) : Environ 24 à 35 heures pour une charge complète de 60 kWh.</li>
+              <li>Sur une prise renforcée Green'Up (3.7 kW) : Environ 15 à 18 heures.</li>
+              <li>Sur une Wallbox de 7.4 kW monophasé : Environ 7 à 8 heures (idéal pour recharger la nuit).</li>
+              <li>Sur une Wallbox de 11 kW triphasé : Environ 5 heures.</li>
+              <li>Sur une Wallbox de 22 kW triphasé : Environ 2 à 3 heures.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-details">
+          <summary>
+            Comment se passe la demande de devis sur votre site ?
+          </summary>
+          <div class="faq-answer">
+            <p>Notre formulaire qualifie votre demande (type de recharge, logement, installation monophasée ou triphasée). Les informations sont validées et transmises en temps réel à nos installateurs partenaires qualifiés IRVE proches de votre commune dans les Bouches-du-Rhône (13). Vous recevez sous 48 heures jusqu'à 3 offres détaillées gratuites et sans engagement. Une visite technique sur site est effectuée avant de finaliser les travaux.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 992px) {
+    .pricing-grid-home, .educational-grid, .guides-grid {
+      grid-template-columns: 1fr !important;
+      gap: 20px;
+    }
+  }
+</style>

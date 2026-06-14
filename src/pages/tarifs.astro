@@ -1,0 +1,238 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+
+const title = `Tarifs Installation Borne de Recharge Bouches-du-Rhône 2026 – Guide Budget`;
+const description = `Retrouvez les tarifs détaillés d'installation de borne de recharge (Wallbox 7.4kW, 11kW, 22kW) et prise Green'Up dans les Bouches-du-Rhône (13). Aides de l'État 2026.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Tarifs Détaillés" }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup 
+    slot="head" 
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section class="static-page-section" style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div class="two-column-layout">
+        
+        <!-- Main Content -->
+        <div class="static-main-content rich-text" style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+          <h1 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">Prix Installation Borne de Recharge dans les Bouches-du-Rhône (13) — Barème Complet 2026</h1>
+          <p>
+            Combien coûte réellement une borne de recharge à domicile dans les Bouches-du-Rhône ? Le budget final dépend de quatre facteurs principaux : la <strong>puissance de charge</strong> (3.7 kW, 7.4 kW, 11 kW ou 22 kW), la <strong>distance entre votre tableau électrique et l'emplacement de la borne</strong>, les travaux de <strong>génie civil</strong> (tranchées, goulottes extérieures, passage de câbles sous fourreau), et la <strong>mise aux normes</strong> éventuelle de votre <a href="/guides/recharge-ve-heures-creuses-edf-provence/" style="color: var(--secondary); font-weight: 700;">installation électrique (monophasé/triphasé)</a>.
+          </p>
+
+          <p>
+            Ci-dessous, la grille tarifaire complète des <strong>prix posés TTC</strong> (matériel de marque + main d'œuvre d'un électricien certifié IRVE) constatés dans le département des Bouches-du-Rhône en 2026.
+          </p>
+
+          <blockquote style="border-left: 4px solid var(--accent); background: var(--primary-light); padding: 15px 20px; margin: 25px 0; border-radius: var(--radius-sm); font-style: italic; color: var(--primary);">
+            <strong>📊 Origine des données :</strong> Tarifs moyens calculés à partir des devis d'installateurs IRVE des Bouches-du-Rhône, des barèmes nationaux ADVENIR et du crédit d'impôt pour la transition énergétique 2026.
+          </blockquote>
+
+          <!-- Section 1: Maison Individuelle -->
+          <h2>1. Prix des solutions de recharge pour maison individuelle (TVA 5,5%)</h2>
+          <p>
+            En maison individuelle (villa provençale, mas) avec garage ou allée privative, la TVA réduite de 5,5% s'applique directement sur l'achat et la main d'œuvre de pose effectuée par un artisan agréé.
+          </p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Type d'Équipement / Puissance</th>
+                <th>Usage &amp; Temps de charge type (VE 60 kWh)</th>
+                <th>Prix moyen posé TTC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Prise Renforcée Green'Up (3.7 kW)</strong></td>
+                <td>Recharge lente sécurisée — environ 15-18 heures</td>
+                <td class="price">450 € – 750 €</td>
+              </tr>
+              <tr>
+                <td><strong>Wallbox 7.4 kW (Monophasé)</strong></td>
+                <td>Standard maison — recharge complète en 7-8 heures (nuit)</td>
+                <td class="price">1 300 € – 1 900 €</td>
+              </tr>
+              <tr>
+                <td><strong>Wallbox 11 kW (Triphasé)</strong></td>
+                <td>Recharge semi-rapide — recharge complète en 5 heures</td>
+                <td class="price">1 600 € – 2 500 €</td>
+              </tr>
+              <tr>
+                <td><strong>Wallbox 22 kW (Triphasé)</strong></td>
+                <td>Recharge ultra-rapide — recharge complète en 2-3 heures</td>
+                <td class="price">2 200 € – 3 800 €</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Section 2: Copropriete -->
+          <h2>2. Prix d'une borne de recharge en Copropriété (TVA 5,5%)</h2>
+          <p>
+            L'installation d'une borne sur votre place de parking réservée en résidence collective marseillaise ou aixoise fait l'objet d'aides accrues, notamment la <a href="/aides-advenir/" style="color: var(--secondary); font-weight: 700;">prime ADVENIR individuelle</a> (jusqu'à 960 €). Pour connaître la procédure complète, consultez notre <a href="/guides/borne-recharge-copropriete-marseille-droit-prise/" style="color: var(--secondary); font-weight: 700;">guide copropriété & droit à la prise</a>.
+          </p>
+          
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Infrastructure de copropriété</th>
+                <th>Description technique</th>
+                <th>Prix moyen posé TTC (avant aides)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Raccordement individuel (Droit à la prise)</strong></td>
+                <td>Liaison directe au compteur des parties communes ou compteur individuel Linky</td>
+                <td class="price">1 900 € – 2 800 €</td>
+              </tr>
+              <tr>
+                <td><strong>Infrastructure collective pré-équipée</strong></td>
+                <td>Colonne montante partagée dans le garage de la résidence (coût par place)</td>
+                <td class="price">2 800 € – 5 000 €</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Section 3: Prestations annexes -->
+          <h2>3. Coûts annexes et frais de raccordement Enedis</h2>
+          <p>
+            Certains chantiers nécessitent des ajustements du tableau électrique de votre habitation ou le passage du réseau en triphasé pour autoriser les fortes puissances (11 kW ou 22 kW) :
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Prestation annexe</th>
+                <th>Détail de l'intervention</th>
+                <th>Prix moyen TTC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mise aux normes du tableau principal</strong></td>
+                <td>Ajout d'interrupteurs différentiels de type A-EV et disjoncteurs divisionnaires dédiés</td>
+                <td class="price">250 € – 600 €</td>
+              </tr>
+              <tr>
+                <td><strong>Délestage dynamique Linky</strong></td>
+                <td>Installation d'un module TIC pour réguler la charge selon la maison</td>
+                <td class="price">180 € – 350 €</td>
+              </tr>
+              <tr>
+                <td><strong>Passage compteur monophasé vers triphasé</strong></td>
+                <td>Modification de l'abonnement et du compteur physique (facturé par Enedis Provence)</td>
+                <td class="price">500 € – 1 300 €</td>
+              </tr>
+              <tr>
+                <td><strong>Liaison câble supplémentaire</strong> (au-delà de 10m)</td>
+                <td>Coût au mètre de câble 3G10mm² ou 5G10mm² sous goulotte ou enterré</td>
+                <td class="price">25 € – 45 € / mètre</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Section 4: Aides 2026 -->
+          <h2>4. Comment réduire votre reste à charge en 2026 ?</h2>
+          <p>
+            Grâce aux réglementations en vigueur en 2026, l'installation d'une borne IRVE par un professionnel qualifié donne droit à des financements directs cumulables. Retrouvez tous les détails sur notre <a href="/aides-advenir/" style="color: var(--secondary); font-weight: 700;">page dédiée aux aides financières 2026</a> :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 25px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>Crédit d'impôt Borne :</strong> Une réduction fiscale de <strong>500 €</strong> par point de recharge (limité à 75% du montant du devis) pour votre résidence principale ou secondaire.</li>
+            <li><strong>TVA Réduite à 5,5% :</strong> Automatiquement appliquée sur le devis si votre logement a plus de 2 ans.</li>
+            <li><strong>Prime ADVENIR Copropriété :</strong> Financement à hauteur de 50% des frais de travaux (jusqu'à 960 €) pour les propriétaires ou locataires en résidence collective.</li>
+            <li><strong>Aide Métropole AMP :</strong> Pour les habitants ou professionnels de la ZFE de Marseille, des bonus à la transition écologique ou mobilité électrique peuvent être attribués.</li>
+          </ul>
+
+          <h2>5. Exemples de Budgets Types dans les Bouches-du-Rhône</h2>
+          <p>Pour vous donner une idée concrète du reste à charge après toutes les aides :</p>
+          <ul style="margin-left: 20px; margin-bottom: 25px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>Villa individuelle, Wallbox 7.4 kW, garage attenant :</strong> Devis moyen 1 450 € TTC → après crédit d'impôt 500 € = <strong>reste à charge ≈ 950 €</strong></li>
+            <li><strong>Copropriété Marseille, droit à la prise, Wallbox 7.4 kW :</strong> Devis moyen 2 200 € TTC → après ADVENIR 960 € + crédit d'impôt 500 € = <strong>reste à charge ≈ 740 €</strong></li>
+            <li><strong>Mas avec passage en triphasé + Wallbox 22 kW :</strong> Devis moyen 3 800 € TTC → après crédit d'impôt 500 € = <strong>reste à charge ≈ 3 300 €</strong></li>
+          </ul>
+
+          <div style="background: var(--primary-light); border: 1.5px solid var(--border-color); padding: 25px; border-radius: var(--radius-md); margin-top: 40px;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 17px; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📚 Pour aller plus loin</h3>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; margin-bottom: 0;">
+              <li>⚡ <a href="/guides/comparatif-wallbox-exterieure-ip54-corrosion-soleil/" style="color: var(--secondary); font-weight: 700;">Comparatif Wallbox Outdoor IP54</a> — Quelle borne extérieure choisir ?</li>
+              <li>💰 <a href="/aides-advenir/" style="color: var(--secondary); font-weight: 700;">Aides ADVENIR & subventions 2026</a> — Maximiser vos réductions</li>
+              <li>🛠️ <a href="/guide-installation/" style="color: var(--secondary); font-weight: 700;">Guide technique d'installation</a> — Normes et câblage NF C 15-100</li>
+              <li>🏢 <a href="/guides/borne-recharge-copropriete-marseille-droit-prise/" style="color: var(--secondary); font-weight: 700;">Borne en copropriété & droit à la prise</a> — Procédure pas à pas</li>
+            </ul>
+          </div>
+
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 25px; text-align: center;">
+            📅 Dernière mise à jour des barèmes : Juin 2026.
+          </p>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="static-sidebar">
+          <div class="sidebar-widget bg-cyan-gradient">
+            <h3>🧮 Simulez vos Aides 2026</h3>
+            <p>Renseignez les détails de votre véhicule et de votre habitation pour calculer votre crédit d'impôt et recevoir 3 devis gratuits.</p>
+            <a href="/devis/" class="sidebar-cta-coral">Comparer les tarifs →</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>📊 Comparatif Charge</h3>
+            <ul style="padding-left: 0; list-style: none; font-size: 13px; color: var(--text); display: flex; flex-direction: column; gap: 12px;">
+              <li style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                <span>Coût 100 km (Essence)</span>
+                <strong style="color: #ef4444;">15.00 €</strong>
+              </li>
+              <li style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                <span>Coût 100 km (Borne Publique)</span>
+                <strong style="color: #f59e0b;">6.50 €</strong>
+              </li>
+              <li style="display: flex; justify-content: space-between; padding-bottom: 8px; border-bottom: 1px solid var(--border-color);">
+                <span>Coût 100 km (Borne Domicile HC)</span>
+                <strong style="color: var(--accent);">2.10 €</strong>
+              </li>
+              <li style="display: flex; justify-content: space-between;">
+                <span>Amortissement Wallbox</span>
+                <strong>14 à 18 mois</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>📚 Réglementations IRVE</h3>
+            <p style="font-size: 12.5px; line-height: 1.45;">L'installation par un non-IRVE annule la couverture des assurances incendie et la garantie constructeur de la batterie de votre voiture électrique (Tesla, Renault, Peugeot).</p>
+            <a href="/guide-installation/" style="color: var(--secondary); font-weight: 700; font-size: 13px;">Vérifier les exigences d'installation →</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>🚗 ZFE Métropole Marseille</h3>
+            <p style="font-size: 12.5px; line-height: 1.45;">Les véhicules Crit'Air 3, 4 et 5 sont progressivement restreints à Marseille. S'équiper d'un VE et d'une borne à domicile est la solution de bon sens.</p>
+            <a href="/zfe-marseille/" style="color: var(--secondary); font-weight: 700; font-size: 13px;">Détails calendrier ZFE →</a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 992px) {
+    .two-column-layout {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

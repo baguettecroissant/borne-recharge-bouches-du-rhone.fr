@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+
+const title = `Guide Installation Borne de Recharge Bouches-du-Rhône — Normes IRVE & NF C 15-100`;
+const description = `Règles techniques, normes électriques NF C 15-100, et obligations IRVE pour l'installation d'une borne de recharge de véhicule électrique dans le 13.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Guide Technique" }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup 
+    slot="head" 
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section class="static-page-section" style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div class="two-column-layout">
+        
+        <!-- Main Content -->
+        <div class="static-main-content rich-text" style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+          <h1 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">Installation de Borne de Recharge dans les Bouches-du-Rhône (13) — Guide Technique &amp; Normes 2026</h1>
+          
+          <p>
+            Installer une borne de recharge pour véhicule électrique (qu'il s'agisse d'une Tesla, d'une Renault Zoé, d'une Peugeot e-208 ou d'une Porsche Taycan) ne s'improvise pas. En France, la réglementation est particulièrement stricte pour garantir la sécurité des habitations contre les risques d'échauffement et d'incendie électrique.
+          </p>
+
+          <blockquote style="border-left: 4px solid var(--accent); background: var(--primary-light); padding: 15px 20px; margin: 25px 0; border-radius: var(--radius-sm); color: var(--primary);">
+            <strong>⚡ Règle d'or en France :</strong> Selon le décret du 12 janvier 2017, toute installation d'un point de charge d'une puissance supérieure à 3,7 kW doit obligatoirement être réalisée par un <strong>électricien certifié IRVE</strong> (Infrastructure de Recharge pour Véhicule Électrique).
+          </blockquote>
+
+          <h2>1. La Norme NF C 15-100 : Le Cadre Réglementaire Obligatoire</h2>
+          <p>
+            La norme <strong>NF C 15-100</strong> régit l'ensemble des installations électriques basse tension en France. Pour les bornes de recharge privées (maison ou copropriété dans le 13), elle impose plusieurs dispositifs de sécurité indispensables :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Un circuit dédié unique :</strong> La borne doit disposer de son propre circuit électrique, partant directement de votre tableau général (TGBT). Il est interdit de la brancher en dérivation sur une prise existante.</li>
+            <li><strong>Un disjoncteur adapté :</strong> Généralement de calibre 40A pour une wallbox 7,4 kW monophasée, il protège le câblage contre les surcharges.</li>
+            <li><strong>Un interrupteur différentiel dédié :</strong> De type A ou type B (ou type F EV), calibré à 30mA. Il détecte les fuites de courant continu générées par la batterie du véhicule et coupe instantanément l'alimentation pour protéger les personnes contre l'électrisation.</li>
+            <li><strong>L'obturateur de sécurité (Prise T2S) :</strong> En France, les prises des bornes domestiques doivent obligatoirement être munies d'obturateurs de sécurité (Type 2S) pour empêcher l'insertion accidentelle d'objets (sécurité enfants).</li>
+          </ul>
+
+          <h2>2. Dimensionnement des Câbles selon la Puissance</h2>
+          <p>
+            Le diamètre de la section de câble en cuivre dépend de la puissance de la borne et de la distance entre le tableau électrique et l'emplacement de charge (garage, carport, allée extérieure) :
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Puissance de la Borne</th>
+                <th>Alimentation</th>
+                <th>Calibre Disjoncteur</th>
+                <th>Section Câble (L &lt; 25m)</th>
+                <th>Section Câble (L &gt; 25m)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>3.7 kW (16A)</strong></td>
+                <td>Monophasé (230V)</td>
+                <td>20 A</td>
+                <td class="price">2.5 mm²</td>
+                <td class="price">4 mm²</td>
+              </tr>
+              <tr>
+                <td><strong>7.4 kW (32A)</strong></td>
+                <td>Monophasé (230V)</td>
+                <td>40 A</td>
+                <td class="price">10 mm²</td>
+                <td class="price">16 mm²</td>
+              </tr>
+              <tr>
+                <td><strong>11 kW (3x16A)</strong></td>
+                <td>Triphasé (400V)</td>
+                <td>20 A (Tri)</td>
+                <td class="price">6 mm²</td>
+                <td class="price">10 mm²</td>
+              </tr>
+              <tr>
+                <td><strong>22 kW (3x32A)</strong></td>
+                <td>Triphasé (400V)</td>
+                <td>40 A (Tri)</td>
+                <td class="price">10 mm²</td>
+                <td class="price">16 mm²</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>3. Spécificités Climatiques Provençales : Chaleur &amp; Sel</h2>
+          <p>
+            Dans les Bouches-du-Rhône, le climat impose des contraintes physiques particulières sur le matériel de charge. Les électriciens IRVE locaux doivent adapter leur pose aux conditions méditerranéennes :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>La Protection Thermique (Chaleur 40°C+) :</strong> En plein été à Marseille, Aix ou Arles, les températures peuvent grimper rapidement, provoquant un phénomène de <em>derating thermique</em> (la borne réduit sa puissance pour ne pas surchauffer). L'installation sous abri (carport ou sous casquette de protection) et le choix d'une borne résistante à la chaleur (ex. Schneider EVLink ou Wallbox Copper SB) sont recommandés.</li>
+            <li><strong>Indice d'étanchéité extérieure :</strong> Toute borne extérieure posée sur le littoral du 13 (Marseille, La Ciotat, Cassis, Carry-le-Rouet) doit présenter un indice minimal <strong>IP54</strong> ou <strong>IP65</strong> contre la poussière fine (amenée par le mistral) et la corrosion saline provoquée par les embruns marins.</li>
+            <li><strong>Le Délestage Dynamique obligatoire :</strong> Avec l'utilisation massive de la climatisation en Provence pendant les pics de chaleur, votre consommation domestique approche souvent la puissance maximale de votre abonnement Enedis. Un module de délestage dynamique (liaison TIC avec le compteur Linky) permet de baisser temporairement la recharge du VE si la clim ou le chauffe-eau s'allument, évitant ainsi de faire disjoncter toute la maison.</li>
+          </ul>
+
+          <h2>4. La Certification IRVE : Une Obligation Légale et d'Assurance</h2>
+          <p>
+            Pourquoi est-il crucial de passer par un installateur qualifié IRVE dans les Bouches-du-Rhône ?
+          </p>
+          <ol style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>Couverture des Assurances :</strong> En cas de sinistre électrique d'origine thermique sur votre véhicule ou votre habitation, votre assurance habitation refusera toute indemnisation si la borne n'a pas été posée par un professionnel agréé IRVE.</li>
+            <li><strong>Garantie Constructeur :</strong> De nombreux fabricants (Wallbox, Tesla, Copper SB, EVBox) annulent la garantie de leur matériel si l'installation n'est pas certifiée par un professionnel qualifié.</li>
+            <li><strong>Éligibilité aux Aides de l'État :</strong> Le crédit d'impôt de 500 € et la prime ADVENIR requièrent la facture détaillée d'un professionnel IRVE avec son numéro de certification Qualifelec ou AFNOR.</li>
+          </ol>
+
+          <div style="background: var(--primary-light); border: 1.5px solid var(--border-color); padding: 25px; border-radius: var(--radius-md); margin-top: 40px;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 17px; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📚 Pour aller plus loin</h3>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; margin-bottom: 0;">
+              <li>💰 <a href="/tarifs/" style="color: var(--secondary); font-weight: 700;">Prix d'installation dans le 13 (2026)</a> — Combien coûte réellement une borne ?</li>
+              <li>💶 <a href="/aides-advenir/" style="color: var(--secondary); font-weight: 700;">Subventions & Aides ADVENIR 2026</a> — Estimez vos remboursements</li>
+              <li>☀️ <a href="/solaire-et-wallbox/" style="color: var(--secondary); font-weight: 700;">Panneaux Solaires & Borne de Recharge</a> — Coupler l'autoconsommation</li>
+              <li>🏢 <a href="/guides/borne-recharge-copropriete-marseille-droit-prise/" style="color: var(--secondary); font-weight: 700;">Droit à la prise en copropriété à Marseille</a> — Guide de raccordement</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="static-sidebar">
+          <div class="sidebar-widget bg-cyan-gradient">
+            <h3>📋 Obtenez 3 Devis IRVE</h3>
+            <p>Comparez gratuitement les propositions techniques d'électriciens qualifiés RGE/IRVE de votre commune.</p>
+            <a href="/devis/" class="sidebar-cta-coral">Demander mes devis →</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>🔌 Prise Renforcée vs Wallbox</h3>
+            <p style="font-size: 13px;">La prise renforcée (Green'Up) charge à 3,7 kW maximum (sécurisée pour 10-15h de charge) et ne nécessite pas de certification IRVE obligatoire (bien que recommandée). La Wallbox (7,4 à 22 kW) charge 3x plus vite mais impose l'IRVE.</p>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>📍 Couverture Locale</h3>
+            <p style="font-size: 13px;">Nos partenaires interviennent sur l'ensemble des communes des Bouches-du-Rhône : Marseille, Aix, Aubagne, Martigues, Salon, Arles, Istres, Cassis, La Ciotat.</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 992px) {
+    .two-column-layout {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

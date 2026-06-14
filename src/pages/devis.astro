@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StepsForm from '../components/StepsForm.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = `Demande de Devis Borne de Recharge IRVE | ${config.brandName}`;
+const description = `Calculez vos aides de l'État (Crédit d'impôt 500 €, ADVENIR, TVA 5,5%) et comparez 3 devis d'électriciens qualifiés IRVE dans les Bouches-du-Rhône (13).`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Demande de Devis" }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup
+    slot="head"
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section style="padding: 60px 0 90px; background-color: var(--bg);">
+    <div class="container" style="max-width: 700px;">
+      <div style="text-align: center; margin-bottom: 35px;">
+        <span style="background: var(--primary-light); color: var(--primary); role: note; font-weight: 700; font-size: 12px; padding: 6px 14px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 15px;">
+          ⏱️ Test d'éligibilité 2 minutes
+        </span>
+        <h1 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--primary); line-height: 1.25; margin-bottom: 12px;">
+          Calculez vos aides Borne de Recharge 2026
+        </h1>
+        <p style="font-size: 15.5px; color: var(--text-muted); line-height: 1.5; max-width: 580px; margin: 0 auto;">
+          Ce simulateur gratuit estime le crédit d'impôt national de 500 €, la prime de copropriété ADVENIR et les subventions régionales pour votre véhicule.
+        </p>
+      </div>
+
+      <!-- Lead form -->
+      <StepsForm />
+
+      <!-- Reassurance badges below the form -->
+      <div class="badges-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; text-align: center;">
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; box-shadow: var(--shadow-sm);">
+          <span style="font-size: 20px; display: block; margin-bottom: 6px;">🔒</span>
+          <h4 style="font-size: 12.5px; color: var(--primary); font-weight: 700; margin-bottom: 4px;">Données RGPD</h4>
+          <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin: 0;">Transmission 100% cryptée et sécurisée à nos installateurs.</p>
+        </div>
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; box-shadow: var(--shadow-sm);">
+          <span style="font-size: 20px; display: block; margin-bottom: 6px;">🛡️</span>
+          <h4 style="font-size: 12.5px; color: var(--primary); font-weight: 700; margin-bottom: 4px;">Électriciens IRVE</h4>
+          <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin: 0;">Artisans certifiés et qualifiés garantissant la conformité légale.</p>
+        </div>
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; box-shadow: var(--shadow-sm);">
+          <span style="font-size: 20px; display: block; margin-bottom: 6px;">🤝</span>
+          <h4 style="font-size: 12.5px; color: var(--primary); font-weight: 700; margin-bottom: 4px;">Gratuit &amp; Sans Engagement</h4>
+          <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; margin: 0;">Étude de faisabilité et visite technique sans frais cachés.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 576px) {
+    .badges-row {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

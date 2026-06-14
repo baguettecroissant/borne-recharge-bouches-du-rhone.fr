@@ -1,0 +1,266 @@
+---
+// ExitIntentPopup.astro
+---
+
+<div class="exit-intent-backdrop" id="exit-intent-backdrop" aria-hidden="true" role="dialog">
+  <div class="exit-intent-modal">
+    <!-- Top colored decorative bar -->
+    <div class="modal-stripe"></div>
+    
+    <!-- Close Button -->
+    <button class="close-modal-btn" id="close-modal-btn" aria-label="Fermer la fenêtre">&times;</button>
+    
+    <!-- Content -->
+    <div class="modal-body">
+      <div class="modal-icon">⚡</div>
+      <h3>Attendez ! Ne partez pas sans vos aides...</h3>
+      <p class="modal-desc">
+        Dans les Bouches-du-Rhône, l'État finance votre borne de recharge avec un crédit d'impôt de <strong>500 €</strong> et une TVA réduite à <strong>5,5%</strong>. Bénéficiez aussi de la prime ADVENIR en copropriété.
+      </p>
+      
+      <!-- Bullet Points -->
+      <ul class="modal-bullets">
+        <li>
+          <span class="bullet-check">✓</span>
+          <span><strong>Crédit d'impôt 2026 :</strong> 500 € remboursés directement pour votre wallbox</span>
+        </li>
+        <li>
+          <span class="bullet-check">✓</span>
+          <span><strong>Prime ADVENIR :</strong> Jusqu'à 50% de financement en copropriété</span>
+        </li>
+        <li>
+          <span class="bullet-check">✓</span>
+          <span><strong>Électriciens IRVE :</strong> Poseurs locaux certifiés dans le 13</span>
+        </li>
+      </ul>
+      
+      <!-- CTA Buttons -->
+      <div class="modal-actions">
+        <button class="btn-primary pulse-btn" id="exit-popup-cta">
+          📋 Estimer mes aides gratuites &rarr;
+        </button>
+        <button class="opt-out-btn" id="exit-popup-opt-out">
+          Non merci, je préfère recharger en 30h sur une prise standard
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .exit-intent-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 51, 68, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .exit-intent-backdrop.show {
+    display: flex;
+    opacity: 1;
+  }
+  .exit-intent-modal {
+    background: white;
+    max-width: 520px;
+    width: 90%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  .exit-intent-backdrop.show .exit-intent-modal {
+    transform: scale(1);
+  }
+  .modal-stripe {
+    height: 6px;
+    background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+  }
+  .close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+  }
+  .close-modal-btn:hover {
+    color: var(--text);
+  }
+  .modal-body {
+    padding: 40px 30px 30px;
+    text-align: center;
+  }
+  .modal-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  .modal-body h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+  .modal-desc {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+  .modal-bullets {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .modal-bullets li {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .bullet-check {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .opt-out-btn {
+    background: none;
+    border: none;
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-decoration: underline;
+    line-height: 1.4;
+  }
+  .opt-out-btn:hover {
+    color: var(--text);
+  }
+
+  /* Pulsing button effect */
+  .pulse-btn {
+    animation: pulseGlow 2s infinite;
+  }
+
+  @keyframes pulseGlow {
+    0% {
+      box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(244, 63, 94, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(244, 63, 94, 0);
+    }
+  }
+
+  /* Global pulse highlight for lead forms on CTA click */
+  :global(.pulse-form) {
+    animation: formPulseGlow 1s ease-in-out infinite alternate !important;
+    transition: all 0.3s ease !important;
+  }
+
+  @keyframes formPulseGlow {
+    from {
+      box-shadow: var(--shadow-lg), 0 0 0 0px rgba(244, 63, 94, 0.4) !important;
+      border-color: var(--border-color) !important;
+    }
+    to {
+      box-shadow: var(--shadow-lg), 0 0 0 10px rgba(244, 63, 94, 0.25) !important;
+      border-color: var(--accent) !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const backdrop = document.getElementById('exit-intent-backdrop');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const ctaBtn = document.getElementById('exit-popup-cta');
+    const optOutBtn = document.getElementById('exit-popup-opt-out');
+
+    if (!backdrop) return;
+
+    // localStorage key — show only ONCE ever
+    const isShownKey = 'borne_recharge_exit_popup_shown_bouches_du_rhone';
+    if (localStorage.getItem(isShownKey) === 'true') return;
+
+    let alreadyShown = false;
+
+    const showModal = () => {
+      if (alreadyShown) return;
+      alreadyShown = true;
+      localStorage.setItem(isShownKey, 'true');
+      backdrop.style.display = 'flex';
+      void backdrop.offsetWidth;
+      backdrop.classList.add('show');
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
+
+    const closeModal = () => {
+      backdrop.classList.remove('show');
+      setTimeout(() => {
+        backdrop.style.display = 'none';
+      }, 300);
+    };
+
+    // ONLY TRIGGER: Desktop exit intent — mouse leaves viewport top
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY < 20) {
+        showModal();
+      }
+    };
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    // Close handlers
+    closeBtn?.addEventListener('click', closeModal);
+    optOutBtn?.addEventListener('click', closeModal);
+
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.classList.contains('show')) closeModal();
+    });
+
+    // CTA: scroll to form
+    ctaBtn?.addEventListener('click', () => {
+      closeModal();
+      const targetForm = document.getElementById('devis') || document.getElementById('borne-lead-form');
+      if (targetForm) {
+        targetForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetForm.classList.add('pulse-form');
+        setTimeout(() => targetForm.classList.remove('pulse-form'), 3000);
+        const firstBox = targetForm.querySelector('.option-box') as HTMLElement;
+        if (firstBox) {
+          firstBox.focus();
+          firstBox.style.outline = '3px solid var(--accent)';
+          setTimeout(() => { if (firstBox) firstBox.style.outline = ''; }, 3000);
+        }
+      } else {
+        window.location.href = '/devis/';
+      }
+    });
+  });
+</script>

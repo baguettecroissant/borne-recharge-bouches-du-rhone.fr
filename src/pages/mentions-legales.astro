@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import config from '../data/config.json';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = `Mentions Légales | ${config.brandName}`;
+const description = `Consultez les mentions légales et conditions d'utilisation du site ${config.domain}.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Mentions Légales" }
+];
+---
+
+<Layout title={title} description={description} robots="noindex, follow">
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+      <div style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <h1 style="font-family: var(--font-heading); font-size: 32px; color: var(--primary); margin-bottom: 25px; border-bottom: 3px solid var(--primary-light); padding-bottom: 15px;">Mentions Légales</h1>
+        
+        <h2>1. Éditeur du Site</h2>
+        <p style="margin-bottom: 20px;">
+          Le site <strong>{config.domain}</strong> est édité dans le cadre d'un réseau indépendant d'actifs digitaux (Rank & Rent). <br />
+          Responsable de publication : Baguette Croissant SAS <br />
+          Contact email : contact@baguettecroissant.com
+        </p>
+
+        <h2>2. Hébergeur</h2>
+        <p style="margin-bottom: 20px;">
+          Le site est hébergé par la plateforme Cloudflare Pages, proposée par Cloudflare Inc. <br />
+          Adresse : 101 Townsend St, San Francisco, CA 94107, USA. <br />
+          Téléphone : +1 (650) 319 8930
+        </p>
+
+        <h2>3. Propriété Intellectuelle</h2>
+        <p style="margin-bottom: 20px;">
+          L'ensemble du contenu de ce site (textes, images, illustrations, spintax programmatiques) est protégé par le droit d'auteur. Toute reproduction ou représentation, intégrale ou partielle, du site ou de l'un des éléments qui le composent, sans accord préalable, est interdite et constituerait une contrefaçon sanctionnée par le Code de la propriété intellectuelle.
+        </p>
+
+        <h2>4. Données Personnelles (RGPD) &amp; Cookies</h2>
+        <p style="margin-bottom: 20px;">
+          Les informations collectées dans le cadre du formulaire de demande de devis font l'objet d'un traitement informatique destiné à qualifier les projets d'installation de bornes de recharge et à les transmettre aux professionnels qualifiés IRVE partenaires. Ces données (nom, prénom, téléphone, email, adresse, code postal) ne sont jamais cédées ou revendues à d'autres tiers. Vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles sur simple demande par email à contact@baguettecroissant.com.
+        </p>
+
+        <h2>5. Responsabilité &amp; Intermédiation</h2>
+        <p style="margin-bottom: 20px;">
+          Le site <strong>{config.domain}</strong> agit en qualité de plateforme d'intermédiation locale de mise en relation. Nous ne réalisons pas de prestations électriques directes. Les devis, visites techniques et chantiers d'installation sont exclusivement pris en charge par des électriciens professionnels indépendants agréés IRVE sous leur propre responsabilité décennale et civile.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

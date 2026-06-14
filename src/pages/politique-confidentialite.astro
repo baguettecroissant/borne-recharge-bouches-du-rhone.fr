@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import config from '../data/config.json';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = `Politique de Confidentialité | ${config.brandName}`;
+const description = `Consultez notre charte de protection des données personnelles (RGPD) du site ${config.domain}.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Politique de Confidentialité" }
+];
+---
+
+<Layout title={title} description={description} robots="noindex, follow">
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+      <div style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <h1 style="font-family: var(--font-heading); font-size: 32px; color: var(--primary); margin-bottom: 25px; border-bottom: 3px solid var(--primary-light); padding-bottom: 15px;">Politique de Confidentialité (RGPD)</h1>
+        
+        <p style="margin-bottom: 20px;">
+          La protection de vos données personnelles est au cœur de nos engagements. Cette politique de confidentialité détaille les informations que nous collectons, comment elles sont traitées et vos droits en vertu du Règlement Général sur la Protection des Données (RGPD).
+        </p>
+
+        <h2>1. Responsable du Traitement</h2>
+        <p style="margin-bottom: 20px;">
+          Le responsable du traitement des données personnelles collectées sur le site <strong>{config.domain}</strong> est Baguette Croissant SAS. Email de contact : contact@baguettecroissant.com.
+        </p>
+
+        <h2>2. Données Personnelles Collectées</h2>
+        <p style="margin-bottom: 20px;">
+          Lorsque vous soumettez une demande de devis sur notre site, nous collectons les données suivantes :
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+          <li>Nom et Prénom (pour identifier le contact)</li>
+          <li>Numéro de téléphone portable (pour la validation technique et de sécurité par SMS)</li>
+          <li>Adresse email (pour l'envoi de votre dossier technique)</li>
+          <li>Adresse postale et Code Postal (pour déterminer la zone géographique du chantier)</li>
+          <li>Informations techniques sur le logement et le compteur électrique</li>
+        </ul>
+
+        <h2>3. Finalité du Traitement &amp; Destinataires</h2>
+        <p style="margin-bottom: 20px;">
+          Vos données personnelles sont traitées pour les finalités suivantes :
+        </p>
+        <ol style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+          <li><strong>Mise en relation locale :</strong> Transmission sécurisée de votre projet d'installation de borne de recharge à 3 partenaires électriciens qualifiés IRVE implantés à proximité dans les Bouches-du-Rhône (13) afin qu'ils puissent étudier votre éligibilité et vous proposer des devis personnalisés.</li>
+          <li><strong>Enregistrement sécurisé :</strong> Sauvegarde temporaire et cryptée dans notre base de données sécurisée (Supabase) pour des besoins d'audit, de traçabilité des prospects et de comptabilisation des leads générés.</li>
+        </ol>
+
+        <h2>4. Durée de Conservation des Données</h2>
+        <p style="margin-bottom: 20px;">
+          Les données personnelles qualifiées de prospects sont conservées pour une durée maximale de 12 mois à compter de la date de soumission du formulaire, avant d'être anonymisées ou définitivement purgées.
+        </p>
+
+        <h2>5. Vos Droits (Droit d'accès et de retrait)</h2>
+        <p style="margin-bottom: 20px;">
+          Conformément aux réglementations européennes, vous disposez d'un droit d'accès, d'opposition, de rectification et d'effacement de vos données personnelles. Pour exercer ces droits, vous pouvez nous écrire à tout moment par email à contact@baguettecroissant.com. Nous traiterons votre demande sous 48 heures ouvrées.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

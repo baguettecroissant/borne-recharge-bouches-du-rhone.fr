@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import config from '../data/config.json';
+
+const title = `Panneaux Solaires & Borne de Recharge Bouches-du-Rhône — Solaire + Wallbox`;
+const description = `Rechargez votre véhicule électrique gratuitement en Provence. Comment coupler panneaux solaires photovoltaïques et borne de recharge IRVE dans le 13.`;
+
+const breadcrumbItems = [
+  { label: "Accueil", href: "/" },
+  { label: "Solaire & Borne" }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup 
+    slot="head" 
+    pageUrl={Astro.url.href}
+    pageTitle={title}
+    pageDescription={description}
+    breadcrumbItems={breadcrumbItems}
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section class="static-page-section" style="padding: 50px 0 80px; background-color: var(--bg);">
+    <div class="container">
+      <div class="two-column-layout">
+        
+        <!-- Main Content -->
+        <div class="static-main-content rich-text" style="background: var(--card-bg); padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+          <h1 style="font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">Autoconsommation Solaire &amp; Recharge VE dans les Bouches-du-Rhône (13) — Guide 2026</h1>
+          
+          <p>
+            Avec plus de <strong>2 800 heures d'ensoleillement par an</strong> en Provence, le département des Bouches-du-Rhône est l'un des territoires les plus propices de France pour la production d'énergie solaire. Associer des panneaux solaires photovoltaïques à une borne de recharge intelligente (Wallbox) est la solution ultime pour rouler à coût quasi nul et maximiser votre taux d'autoconsommation énergétique.
+          </p>
+
+          <blockquote style="border-left: 4px solid var(--accent); background: var(--primary-light); padding: 15px 20px; margin: 25px 0; border-radius: var(--radius-sm); color: var(--primary);">
+            <strong>☀️ Le saviez-vous ?</strong> Charger son véhicule électrique représente environ 30% à 40% de la consommation électrique annuelle d'une maison. Utiliser le surplus de production de vos panneaux solaires pour recharger votre voiture vous évite de réinjecter de l'électricité sur le réseau Enedis à bas prix (0,13 €/kWh acheté en OA) et remplace l'achat de carburant fossile.
+          </blockquote>
+
+          <h2>1. Comment fonctionne le couplage Solaire + Wallbox ?</h2>
+          <p>
+            Le principe repose sur l'<strong>autoconsommation avec gestion du surplus</strong>. Lorsque vos panneaux solaires (installés sur le toit de votre villa provençale ou de votre mas à Aix, Aubagne ou Salon) produisent de l'électricité, celle-ci alimente en priorité les appareils en marche dans la maison (clim, réfrigérateur, piscine).
+          </p>
+          <p>
+            Si la production solaire dépasse la consommation de la maison, il y a un "surplus". Une borne de recharge intelligente équipée d'un capteur de courant (comme la <strong>Wallbox Pulsar Plus</strong> avec l'option Eco-Smart, ou la borne <strong>Zappi</strong>) détecte en temps réel ce surplus et l'injecte directement dans la batterie de votre voiture électrique, plutôt que de le renvoyer gratuitement ou pour quelques centimes sur le réseau public.
+          </p>
+
+          <h2>2. Les Différents Modes de Recharge Solaire</h2>
+          <p>
+            Les bornes compatibles solaires proposent généralement trois modes de fonctionnement réglables depuis votre smartphone :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>Mode 100% Solaire (Eco+) :</strong> La borne ne charge le véhicule que si les panneaux produisent un surplus d'au moins 1,4 kW (6A monophasé). Si un nuage passe ou si la clim démarre, la charge ralentit ou se met en pause. Votre recharge est ainsi <strong>100% gratuite et renouvelable</strong>.</li>
+            <li><strong>Mode Mixte (Eco) :</strong> La charge combine l'énergie solaire disponible et le réseau électrique classique pour garantir une vitesse de charge stable minimale (ex. charger à 3 kW minimum même s'il n'y a que 1 kW de solaire disponible).</li>
+            <li><strong>Mode Rapide (Boost) :</strong> La borne charge à puissance maximale (ex. 7,4 kW ou 22 kW) en puisant tout ce qui est nécessaire sur le réseau électrique. Utile si vous devez repartir urgemment avec une batterie pleine.</li>
+          </ul>
+
+          <h2>3. Rentabilité et Économies : Le Calcul en Provence</h2>
+          <p>
+            Prenons l'exemple d'un résident de Salon-de-Provence ou d'Arles parcourant 15 000 km par an en véhicule électrique (consommation moyenne de 17 kWh / 100 km, soit 2 550 kWh annuels) :
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>Recharge sur réseau public :</strong> À 0,55 €/kWh sur borne publique, le coût annuel est de <strong>1 402 €</strong>.</li>
+            <li><strong>Recharge à domicile (Tarif standard EDF 2026) :</strong> À 0,25 €/kWh, le coût annuel s'élève à <strong>637 €</strong>.</li>
+            <li><strong>Recharge à domicile (Heures creuses Linky) :</strong> À 0,18 €/kWh, le coût annuel descend à <strong>459 €</strong>.</li>
+            <li><strong>Recharge solaire en autoconsommation :</strong> Le coût de l'électricité produite par vos panneaux est estimé à <strong>0,06 €/kWh</strong> (amortissement du coût d'installation photovoltaïque sur 20 ans). Le coût annuel tombe à <strong>153 €</strong>, soit une économie de plus de 1 200 € par an par rapport au réseau public !</li>
+          </ul>
+
+          <h2>4. Aides et Subventions Cumulables</h2>
+          <p>
+            En réalisant ce double projet (ou en ajoutant une borne à une installation solaire existante), vous pouvez cumuler plusieurs subventions :
+          </p>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Équipement</th>
+                <th>Type d'Aide / Subvention 2026</th>
+                <th>Montant Moyen Constaté</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Borne de recharge</strong></td>
+                <td>Crédit d'impôt national (Toutes ressources)</td>
+                <td class="price">500 € par borne</td>
+              </tr>
+              <tr>
+                <td><strong>Borne de recharge</strong></td>
+                <td>TVA réduite à 5,5% (Logement &gt; 2 ans)</td>
+                <td class="price">Économie de ~14% sur le devis</td>
+              </tr>
+              <tr>
+                <td><strong>Panneaux Solaires</strong></td>
+                <td>Prime à l'autoconsommation (versée par EDF OA sur 5 ans)</td>
+                <td class="price">~300 € par kWc installé (ex: 900 € pour 3 kWc)</td>
+              </tr>
+              <tr>
+                <td><strong>Panneaux Solaires</strong></td>
+                <td>TVA réduite à 10% (Installations &le; 3 kWc)</td>
+                <td class="price">Réduction directe de TVA</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>5. Les Recommandations de nos Électriciens IRVE</h2>
+          <ol style="margin-left: 20px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <li><strong>Choisissez une borne compatible avec votre onduleur :</strong> Les marques Fronius, SMA, SolarEdge et Enphase disposent de leurs propres bornes de recharge qui s'intègrent nativement dans leur écosystème de suivi d'énergie (Monitoring).</li>
+            <li><strong>Amortissez la recharge pendant les heures de pointe solaire :</strong> Contrairement à la recharge standard de nuit, le solaire impose de charger en journée (généralement entre 11h et 16h en Provence) pour capter le pic de production. Idéal pour le télétravail ou si vous disposez d'un deuxième véhicule de foyer qui reste à la maison.</li>
+            <li><strong>Ne négligez pas les protections IP54 :</strong> Avec l'exposition prolongée au soleil provençal sur les carports extérieurs, veillez à ce que la borne soit protégée par une casquette anti-UV pour préserver l'électronique de la surchauffe.</li>
+          </ol>
+
+          <div style="background: var(--primary-light); border: 1.5px solid var(--border-color); padding: 25px; border-radius: var(--radius-md); margin-top: 40px;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 17px; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px;">📚 Pour aller plus loin</h3>
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; margin-bottom: 0;">
+              <li>🛠️ <a href="/guide-installation/" style="color: var(--secondary); font-weight: 700;">Guide d'installation technique & normes</a> — NFC 15-100 et IRVE</li>
+              <li>💰 <a href="/tarifs/" style="color: var(--secondary); font-weight: 700;">Prix d'une pose de borne dans le 13</a> — Notre comparatif de prix</li>
+              <li>💶 <a href="/aides-advenir/" style="color: var(--secondary); font-weight: 700;">Primes ADVENIR & Crédit d'impôt</a> — Subventions détaillées</li>
+              <li>🏢 <a href="/guides/recharge-ve-heures-creuses-edf-provence/" style="color: var(--secondary); font-weight: 700;">Optimiser la recharge avec les heures creuses</a> — Guide Enedis</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="static-sidebar">
+          <div class="sidebar-widget bg-cyan-gradient">
+            <h3>☀️ Étude Gratuite</h3>
+            <p>Faites chiffrer l'installation combinée de panneaux solaires et d'une borne intelligente par nos experts RGE/IRVE partenaires des Bouches-du-Rhône.</p>
+            <a href="/devis/" class="sidebar-cta-coral">Obtenir mes devis →</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>⚡ Seuil de Démarrage</h3>
+            <p style="font-size: 13px;">Pour démarrer la recharge solaire, un véhicule électrique a besoin d'une intensité minimale de <strong>6 Ampères</strong>, soit une puissance de production photovoltaïque disponible de <strong>1,4 kW</strong> en monophasé.</p>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>🌍 Indépendance Énergétique</h3>
+            <p style="font-size: 13px;">En couplant le solaire et la borne dans le 13, vous atteignez jusqu'à <strong>80% d'autonomie énergétique</strong> sur vos déplacements du quotidien, vous protégeant ainsi des hausses régulières des tarifs de l'électricité.</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @media (max-width: 992px) {
+    .two-column-layout {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
