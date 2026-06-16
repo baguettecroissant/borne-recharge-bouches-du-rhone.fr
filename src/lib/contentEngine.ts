@@ -7,10 +7,11 @@ import communes from '../data/communes.json';
 
 export function spin(text: string, seed: string): string {
   let result = text;
-  const spintaxRegex = /{([^{}|]+\|[^{}]+)}/g;
+  const spintaxTest = /{([^{}|]+\|[^{}]+)}/;
+  const spintaxReplace = /{([^{}|]+\|[^{}]+)}/g;
   
-  while (spintaxRegex.test(result)) {
-    result = result.replace(spintaxRegex, (match, choicesStr) => {
+  while (spintaxTest.test(result)) {
+    result = result.replace(spintaxReplace, (match, choicesStr) => {
       if (['VILLE', 'CODE_POSTAL', 'PRIX_MIN', 'PRIX_MAX', 'VARIANTE_INTRO'].includes(choicesStr)) {
         return match;
       }
